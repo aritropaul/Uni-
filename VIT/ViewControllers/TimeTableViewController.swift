@@ -39,7 +39,6 @@ class TimeTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         if let currentDay = timetable.currentDay {
             _ = self.TTforDay(day: currentDay)
-            print(currentDay)
             self.tableView.reloadData()
         }
     }
@@ -170,7 +169,9 @@ class TimeTableViewController: UITableViewController {
             let alarmAction = UIAction(title: "Set a reminder", image: UIImage(systemName: "alarm")) { (action) in
                 let formatter = DateFormatter()
                 formatter.dateFormat = "E hh:mm a"
-                let time = formatter.date(from: self.days[self.selectedDay] + (today[indexPath.row].inTime ?? ""))
+                let timeString = self.days[self.selectedDay] + " " + (today[indexPath.row].inTime ?? "")
+                print(timeString)
+                let time = formatter.date(from: timeString)
                 scheduleNotification(course: course, time: time!)
                 self.showToast(with: "Reminder Set for \(course.abbr())")
             }
@@ -206,11 +207,16 @@ class TimeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let dayView = UIView(frame: CGRect(x: 0, y: self.navigationController?.navigationBar.frame.height ?? 44 + 20, width: self.view.frame.width, height: 56))
+        let blur = UIBlurEffect(style: .systemUltraThinMaterial)
+        let blurView = UIVisualEffectView(effect: blur)
+        dayView.backgroundColor = .systemBackground
+        blurView.frame = dayView.bounds
+        dayView.addSubview(blurView)
         dayView.addSubview(menu)
         menu.isUserInteractionEnabled = true
         menu.indicatorColor = .white
 //        menu.setSelectIndex(index: selectedDay, animated: true)
-        dayView.backgroundColor = .secondarySystemBackground
+//        dayView.backgroundColor = .systemBackground
         return dayView
     }
 

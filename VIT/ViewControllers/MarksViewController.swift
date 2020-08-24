@@ -23,7 +23,7 @@ class MarksViewController: UITableViewController {
         super.viewDidLoad()
         getMarks()
         self.refreshControl?.addTarget(self, action: #selector(getMarks), for: .valueChanged)
-        semesterButton.title = Semesters.WinterSemester201920.rawValue
+        semesterButton.title = Semesters.FallSemester202021.rawValue
         semesterButton.primaryAction = nil
         semesterButton.menu = makeMenu()
         
@@ -36,8 +36,8 @@ class MarksViewController: UITableViewController {
             switch result {
             case .success(let marks) :
                 self.marks = marks
-                self.sem = marks.markView?.WinterSemester201920 ?? [String: MarksList]()
-                self.semesterButton.title = Semesters.WinterSemester201920.rawValue
+                self.sem = marks.markView?.FallSemester202021 ?? [String: MarksList]()
+                self.semesterButton.title = Semesters.FallSemester202021.rawValue
                 self.marksList = [MarksList]()
                 for (_, value) in self.sem {
                     self.marksList.append(value)
