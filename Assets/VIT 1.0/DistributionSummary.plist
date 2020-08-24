@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>VIT.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>bitcode</key>
+			<true/>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>CF2CB9C1AF3C8B95712F52D2098EC8900329C4A4</string>
+				<key>dateExpires</key>
+				<string>12/11/20</string>
+				<key>type</key>
+				<string>Apple Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>2J3WW2KWBU.com.aritropaul.VIT</string>
+				<key>beta-reports-active</key>
+				<true/>
+				<key>com.apple.developer.team-identifier</key>
+				<string>2J3WW2KWBU</string>
+				<key>get-task-allow</key>
+				<false/>
+				<key>keychain-access-groups</key>
+				<array>
+					<string>2J3WW2KWBU.com.aritropaul.VIT</string>
+				</array>
+			</dict>
+			<key>name</key>
+			<string>VIT.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>2dcca0a1-5e6a-4009-b03d-04d8677d7d67</string>
+				<key>name</key>
+				<string>iOS Team Store Provisioning Profile: com.aritropaul.VIT</string>
+			</dict>
+			<key>symbols</key>
+			<true/>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>2J3WW2KWBU</string>
+				<key>name</key>
+				<string>Aritro Paul</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

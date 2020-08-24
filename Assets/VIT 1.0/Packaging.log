@@ -1,0 +1,174 @@
+2020-07-22 12:00:34 +0000  Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x7fef957bdd60; archive(resolved)='<IDEArchive: 0x7fef95221c90>', distributionTask(resolved)='2', distributionDestination(resolved)='1', distributionMethod(resolved)='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fef81c3f4d0>', team(resolved)='<IDEProvisioningDisambiguatableBasicTeam: 0x7fef8089a6a0; teamID='2J3WW2KWBU', teamName='Aritro Paul', teamType='Individual', username='aritro.apple61@gmail.com', isFreeProvisioningTeam='0'>'>
+	Chain (12, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x7fef957bdd60; archive = '<IDEArchive: 0x7fef95221c90>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fef81c3f4d0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fef8089a6a0; teamID='2J3WW2KWBU', teamName='Aritro Paul', teamType='Individual', username='aritro.apple61@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionProcessingPipelineContext: 0x7fef957871b0; archive = '<IDEArchive: 0x7fef95221c90>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fef81c3f4d0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fef8089a6a0; teamID='2J3WW2KWBU', teamName='Aritro Paul', teamType='Individual', username='aritro.apple61@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fef94f3f840; archive = '<IDEArchive: 0x7fef95221c90>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fef81c3f4d0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fef8089a6a0; teamID='2J3WW2KWBU', teamName='Aritro Paul', teamType='Individual', username='aritro.apple61@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fef94ffaec0; archive = '<IDEArchive: 0x7fef95221c90>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fef81c3f4d0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fef8089a6a0; teamID='2J3WW2KWBU', teamName='Aritro Paul', teamType='Individual', username='aritro.apple61@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fef95715af0; archive = '<IDEArchive: 0x7fef95221c90>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fef81c3f4d0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fef8089a6a0; teamID='2J3WW2KWBU', teamName='Aritro Paul', teamType='Individual', username='aritro.apple61@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fef952bfe50; archive = '<IDEArchive: 0x7fef95221c90>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fef81c3f4d0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fef8089a6a0; teamID='2J3WW2KWBU', teamName='Aritro Paul', teamType='Individual', username='aritro.apple61@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fef99568bc0; archive = '<IDEArchive: 0x7fef95221c90>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fef81c3f4d0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fef8089a6a0; teamID='2J3WW2KWBU', teamName='Aritro Paul', teamType='Individual', username='aritro.apple61@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fef995aeb70; archive = '<IDEArchive: 0x7fef95221c90>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fef81c3f4d0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fef8089a6a0; teamID='2J3WW2KWBU', teamName='Aritro Paul', teamType='Individual', username='aritro.apple61@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fef93227e00; archive = '<IDEArchive: 0x7fef95221c90>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fef81c3f4d0>', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fef8089a6a0; teamID='2J3WW2KWBU', teamName='Aritro Paul', teamType='Individual', username='aritro.apple61@gmail.com', isFreeProvisioningTeam='0'>'>
+	<IDEDistributionContext: 0x7fef91924cb0; archive = '<IDEArchive: 0x7fef95221c90>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fef81c3f4d0>', team='(null)'>
+	<IDEDistributionContext: 0x7fef807e25c0; archive = '<IDEArchive: 0x7fef95221c90>', distributionMethod='<IDEDistributionMethodiOSAppStoreDistribution: 0x7fef81c3f4d0>', team='(null)'>
+	<IDEDistributionContext: 0x7fef94f65a50; archive = '<IDEArchive: 0x7fef95221c90>', distributionMethod='(null)', team='(null)'>
+</IDEDistributionProcessingPipelineContext: 0x7fef957bdd60>
+2020-07-22 12:00:34 +0000  Processing step: IDEDistributionCreateDestRootStep
+2020-07-22 12:00:34 +0000  Processing step: IDEDistributionCopyItemStep
+2020-07-22 12:00:34 +0000  Running /usr/bin/ditto '-V' '/Users/aritropaul/Library/Developer/Xcode/Archives/2020-07-22/VIT 22-07-20, 5.26 PM.xcarchive/Products/Applications/VIT.app' '/var/folders/mw/92pbl7xx03s6pb0kzn_5zny00000gn/T/XcodeDistPipeline.~~~chBIO8/Root/Payload/VIT.app'
+2020-07-22 12:00:34 +0000  >>> Copying /Users/aritropaul/Library/Developer/Xcode/Archives/2020-07-22/VIT 22-07-20, 5.26 PM.xcarchive/Products/Applications/VIT.app 
+2020-07-22 12:00:34 +0000  copying file ./_CodeSignature/CodeResources ... 
+2020-07-22 12:00:34 +0000  6135 bytes for ./_CodeSignature/CodeResources
+copying file ./AppIcon60x60@2x.png ... 
+3944 bytes for ./AppIcon60x60@2x.png
+2020-07-22 12:00:34 +0000  copying file ./Base.lproj/Main.storyboardc/aWk-xl-pTy-view-y9c-ul-T3J.nib ... 
+2020-07-22 12:00:34 +0000  11538 bytes for ./Base.lproj/Main.storyboardc/aWk-xl-pTy-view-y9c-ul-T3J.nib
+2020-07-22 12:00:34 +0000  copying file ./Base.lproj/Main.storyboardc/UIViewController-DsC-kh-EpB.nib ... 
+2020-07-22 12:00:34 +0000  1370 bytes for ./Base.lproj/Main.storyboardc/UIViewController-DsC-kh-EpB.nib
+2020-07-22 12:00:34 +0000  copying file ./Base.lproj/Main.storyboardc/UITabBarController-fn2-aS-Phx.nib ... 
+2020-07-22 12:00:34 +0000  6452 bytes for ./Base.lproj/Main.storyboardc/UITabBarController-fn2-aS-Phx.nib
+2020-07-22 12:00:34 +0000  copying file ./Base.lproj/Main.storyboardc/DsC-kh-EpB-view-hpC-6F-hZV.nib ... 
+2020-07-22 12:00:34 +0000  1197 bytes for ./Base.lproj/Main.storyboardc/DsC-kh-EpB-view-hpC-6F-hZV.nib
+2020-07-22 12:00:34 +0000  copying file ./Base.lproj/Main.storyboardc/Qdc-xe-Kwh-view-pWT-0v-QC9.nib ... 
+2020-07-22 12:00:34 +0000  7271 bytes for ./Base.lproj/Main.storyboardc/Qdc-xe-Kwh-view-pWT-0v-QC9.nib
+2020-07-22 12:00:34 +0000  copying file ./Base.lproj/Main.storyboardc/u6Z-8E-SEh-view-bx6-DN-bP3.nib ... 
+2020-07-22 12:00:34 +0000  6435 bytes for ./Base.lproj/Main.storyboardc/u6Z-8E-SEh-view-bx6-DN-bP3.nib
+2020-07-22 12:00:34 +0000  copying file ./Base.lproj/Main.storyboardc/StartingViewController.nib ... 
+1385 bytes for ./Base.lproj/Main.storyboardc/StartingViewController.nib
+copying file ./Base.lproj/Main.storyboardc/YIV-ue-CUI-view-Ecp-zJ-KS5.nib ... 
+2020-07-22 12:00:34 +0000  7928 bytes for ./Base.lproj/Main.storyboardc/YIV-ue-CUI-view-Ecp-zJ-KS5.nib
+2020-07-22 12:00:34 +0000  copying file ./Base.lproj/Main.storyboardc/Info.plist ... 
+393 bytes for ./Base.lproj/Main.storyboardc/Info.plist
+copying file ./Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib ... 
+2020-07-22 12:00:34 +0000  1197 bytes for ./Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib
+2020-07-22 12:00:34 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib ... 
+2020-07-22 12:00:34 +0000  896 bytes for ./Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib
+2020-07-22 12:00:34 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/Info.plist ... 
+258 bytes for ./Base.lproj/LaunchScreen.storyboardc/Info.plist
+copying file ./VIT ... 
+2020-07-22 12:00:34 +0000  1167184 bytes for ./VIT
+2020-07-22 12:00:34 +0000  copying file ./Assets.car ... 
+2020-07-22 12:00:34 +0000  223023 bytes for ./Assets.car
+copying file ./embedded.mobileprovision ... 
+2020-07-22 12:00:34 +0000  13425 bytes for ./embedded.mobileprovision
+copying file ./Info.plist ... 
+2020-07-22 12:00:34 +0000  1606 bytes for ./Info.plist
+copying file ./PkgInfo ... 
+2020-07-22 12:00:34 +0000  8 bytes for ./PkgInfo
+2020-07-22 12:00:34 +0000  /usr/bin/ditto exited with 0
+2020-07-22 12:00:34 +0000  Processing step: IDEDistributionEmbedProfileStep
+2020-07-22 12:00:34 +0000  Processing step: IDEDistributionInfoPlistStep
+2020-07-22 12:00:34 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2020-07-22 12:00:34 +0000  Processing step: IDEDistributionItemRemovalStep
+2020-07-22 12:00:34 +0000  Processing step: IDEDistributionAppThinningPlistStep
+2020-07-22 12:00:34 +0000  Skipping step: IDEDistributionAppThinningPlistStep because it said so
+2020-07-22 12:00:34 +0000  Processing step: IDEDistributionCompileBitcodeStep
+2020-07-22 12:00:34 +0000  Skipping step: IDEDistributionCompileBitcodeStep because it said so
+2020-07-22 12:00:34 +0000  Processing step: IDEDistributionCodeSlimmingStep
+2020-07-22 12:00:34 +0000  Running /Volumes/External/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip '/var/folders/mw/92pbl7xx03s6pb0kzn_5zny00000gn/T/XcodeDistPipeline.~~~chBIO8/Root/Payload/VIT.app/VIT' '-l' '-o' '/var/folders/mw/92pbl7xx03s6pb0kzn_5zny00000gn/T/XcodeDistPipeline.~~~chBIO8/Root/Payload/VIT.app/VIT'
+2020-07-22 12:00:34 +0000  /Volumes/External/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip exited with 0
+2020-07-22 12:00:34 +0000  Processing step: IDEDistributionCopyBCSymbolMapsStep
+2020-07-22 12:00:35 +0000  Running /usr/bin/ditto '-V' '/Users/aritropaul/Library/Developer/Xcode/Archives/2020-07-22/VIT 22-07-20, 5.26 PM.xcarchive/BCSymbolMaps/E9B9A1B2-D771-3B28-A08F-2BA7522E67D9.bcsymbolmap' '/var/folders/mw/92pbl7xx03s6pb0kzn_5zny00000gn/T/XcodeDistPipeline.~~~chBIO8/Root/BCSymbolMaps/E9B9A1B2-D771-3B28-A08F-2BA7522E67D9.bcsymbolmap'
+2020-07-22 12:00:35 +0000  >>> Copying /Users/aritropaul/Library/Developer/Xcode/Archives/2020-07-22/VIT 22-07-20, 5.26 PM.xcarchive/BCSymbolMaps/E9B9A1B2-D771-3B28-A08F-2BA7522E67D9.bcsymbolmap 
+2020-07-22 12:00:35 +0000  copying file ./E9B9A1B2-D771-3B28-A08F-2BA7522E67D9.bcsymbolmap ... 
+2020-07-22 12:00:35 +0000  114291 bytes for ./E9B9A1B2-D771-3B28-A08F-2BA7522E67D9.bcsymbolmap
+2020-07-22 12:00:35 +0000  /usr/bin/ditto exited with 0
+2020-07-22 12:00:35 +0000  Processing step: IDEDistributionSymbolsStep
+2020-07-22 12:00:35 +0000  Excluding symbols for VIT.app
+2020-07-22 12:00:35 +0000  Processing step: IDEDistributionCopyAppleProvidedContentStep
+2020-07-22 12:00:35 +0000  Processing step: IDEDistributionAppThinningStep
+2020-07-22 12:00:35 +0000  Skipping step: IDEDistributionAppThinningStep because it said so
+2020-07-22 12:00:35 +0000  Processing step: IDEDistributionArchThinningStep
+2020-07-22 12:00:35 +0000  Running /Volumes/External/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/mw/92pbl7xx03s6pb0kzn_5zny00000gn/T/XcodeDistPipeline.~~~chBIO8/Root/Payload/VIT.app/VIT' '-verify_arch' 'arm64e'
+2020-07-22 12:00:35 +0000  /Volumes/External/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2020-07-22 12:00:35 +0000  Skipping architecture thinning for item "VIT" because arch "arm64e" wasn't found
+2020-07-22 12:00:35 +0000  Processing step: IDEDistributionODRStep
+2020-07-22 12:00:35 +0000  Processing step: IDEDistributionStripXattrsStep
+2020-07-22 12:00:35 +0000  Running /usr/bin/xattr '-crs' '/var/folders/mw/92pbl7xx03s6pb0kzn_5zny00000gn/T/XcodeDistPipeline.~~~chBIO8/Root/Payload/VIT.app'
+2020-07-22 12:00:35 +0000  /usr/bin/xattr exited with 0
+2020-07-22 12:00:35 +0000  Processing step: IDEDistributionCodesignStep
+2020-07-22 12:00:35 +0000  Entitlements for <IDEDistributionItem: 0x7fef808ab870; bundleID='com.aritropaul.VIT', path='<DVTFilePath:0x7fef809d33c0:'/Users/aritropaul/Library/Developer/Xcode/Archives/2020-07-22/VIT 22-07-20, 5.26 PM.xcarchive/Products/Applications/VIT.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fef93220c40; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fef9480ace0; name='Apple Development: Aritro Paul (33G32NC4SG)', hash='F441535D0312E2104B40797CD9AF491A1DDD7280', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fef9b7997f0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2019-09-13 10:55:44 +0000''>', entitlements='{
+    "application-identifier" = "2J3WW2KWBU.com.aritropaul.VIT";
+    "com.apple.developer.team-identifier" = 2J3WW2KWBU;
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "2J3WW2KWBU.com.aritropaul.VIT"
+    );
+}', teamID='2J3WW2KWBU', identifier='com.aritropaul.VIT', executablePath='<DVTFilePath:0x7fef94e39a10:'/Users/aritropaul/Library/Developer/Xcode/Archives/2020-07-22/VIT 22-07-20, 5.26 PM.xcarchive/Products/Applications/VIT.app/VIT'>', hardenedRuntime='0'>'>: {
+    "application-identifier" = "2J3WW2KWBU.com.aritropaul.VIT";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = 2J3WW2KWBU;
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "2J3WW2KWBU.com.aritropaul.VIT"
+    );
+}
+2020-07-22 12:00:35 +0000  Writing entitlements for <IDEDistributionItem: 0x7fef808ab870; bundleID='com.aritropaul.VIT', path='<DVTFilePath:0x7fef809d33c0:'/Users/aritropaul/Library/Developer/Xcode/Archives/2020-07-22/VIT 22-07-20, 5.26 PM.xcarchive/Products/Applications/VIT.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x7fef93220c40; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x7fef948c1320; name='Apple Development: Aritro Paul (33G32NC4SG)', hash='F441535D0312E2104B40797CD9AF491A1DDD7280', serialNumber='<DVTSigningCertificateSerialNumber: 0x7fef9b7b8fc0>', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2019-09-13 10:55:44 +0000''>', entitlements='{
+    "application-identifier" = "2J3WW2KWBU.com.aritropaul.VIT";
+    "com.apple.developer.team-identifier" = 2J3WW2KWBU;
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "2J3WW2KWBU.com.aritropaul.VIT"
+    );
+}', teamID='2J3WW2KWBU', identifier='com.aritropaul.VIT', executablePath='<DVTFilePath:0x7fef94e39a10:'/Users/aritropaul/Library/Developer/Xcode/Archives/2020-07-22/VIT 22-07-20, 5.26 PM.xcarchive/Products/Applications/VIT.app/VIT'>', hardenedRuntime='0'>'> to: /var/folders/mw/92pbl7xx03s6pb0kzn_5zny00000gn/T/XcodeDistPipeline.~~~chBIO8/entitlements~~~MsxcdJ
+2020-07-22 12:00:35 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' 'CF2CB9C1AF3C8B95712F52D2098EC8900329C4A4' '--entitlements' '/var/folders/mw/92pbl7xx03s6pb0kzn_5zny00000gn/T/XcodeDistPipeline.~~~chBIO8/entitlements~~~MsxcdJ' '--preserve-metadata=identifier,flags,runtime' '/var/folders/mw/92pbl7xx03s6pb0kzn_5zny00000gn/T/XcodeDistPipeline.~~~chBIO8/Root/Payload/VIT.app'
+2020-07-22 12:00:35 +0000  /var/folders/mw/92pbl7xx03s6pb0kzn_5zny00000gn/T/XcodeDistPipeline.~~~chBIO8/Root/Payload/VIT.app: signed app bundle with Mach-O thin (arm64) [com.aritropaul.VIT]
+2020-07-22 12:00:35 +0000  /usr/bin/codesign exited with 0
+2020-07-22 12:00:35 +0000  Processing step: IDEDistributionZipODRItemStep
+2020-07-22 12:00:35 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2020-07-22 12:00:35 +0000  Processing step: IDEDistributionCreateIPAStep
+2020-07-22 12:00:35 +0000  Running /usr/bin/ditto '-V' '-c' '-k' '--norsrc' '/var/folders/mw/92pbl7xx03s6pb0kzn_5zny00000gn/T/XcodeDistPipeline.~~~chBIO8/Root' '/var/folders/mw/92pbl7xx03s6pb0kzn_5zny00000gn/T/XcodeDistPipeline.~~~chBIO8/Packages/VIT.ipa'
+2020-07-22 12:00:35 +0000  >>> Copying /var/folders/mw/92pbl7xx03s6pb0kzn_5zny00000gn/T/XcodeDistPipeline.~~~chBIO8/Root 
+2020-07-22 12:00:35 +0000  copying file ./BCSymbolMaps/E9B9A1B2-D771-3B28-A08F-2BA7522E67D9.bcsymbolmap ... 
+2020-07-22 12:00:35 +0000  114291 bytes for ./BCSymbolMaps/E9B9A1B2-D771-3B28-A08F-2BA7522E67D9.bcsymbolmap
+2020-07-22 12:00:35 +0000  copying file ./Payload/VIT.app/_CodeSignature/CodeResources ... 
+6135 bytes for ./Payload/VIT.app/_CodeSignature/CodeResources
+copying file ./Payload/VIT.app/AppIcon60x60@2x.png ... 
+3944 bytes for ./Payload/VIT.app/AppIcon60x60@2x.png
+2020-07-22 12:00:35 +0000  copying file ./Payload/VIT.app/Base.lproj/Main.storyboardc/aWk-xl-pTy-view-y9c-ul-T3J.nib ... 
+2020-07-22 12:00:35 +0000  11538 bytes for ./Payload/VIT.app/Base.lproj/Main.storyboardc/aWk-xl-pTy-view-y9c-ul-T3J.nib
+2020-07-22 12:00:35 +0000  copying file ./Payload/VIT.app/Base.lproj/Main.storyboardc/UIViewController-DsC-kh-EpB.nib ... 
+1370 bytes for ./Payload/VIT.app/Base.lproj/Main.storyboardc/UIViewController-DsC-kh-EpB.nib
+copying file ./Payload/VIT.app/Base.lproj/Main.storyboardc/UITabBarController-fn2-aS-Phx.nib ... 
+2020-07-22 12:00:35 +0000  6452 bytes for ./Payload/VIT.app/Base.lproj/Main.storyboardc/UITabBarController-fn2-aS-Phx.nib
+2020-07-22 12:00:35 +0000  copying file ./Payload/VIT.app/Base.lproj/Main.storyboardc/DsC-kh-EpB-view-hpC-6F-hZV.nib ... 
+2020-07-22 12:00:35 +0000  1197 bytes for ./Payload/VIT.app/Base.lproj/Main.storyboardc/DsC-kh-EpB-view-hpC-6F-hZV.nib
+copying file ./Payload/VIT.app/Base.lproj/Main.storyboardc/Qdc-xe-Kwh-view-pWT-0v-QC9.nib ... 
+2020-07-22 12:00:35 +0000  7271 bytes for ./Payload/VIT.app/Base.lproj/Main.storyboardc/Qdc-xe-Kwh-view-pWT-0v-QC9.nib
+2020-07-22 12:00:35 +0000  copying file ./Payload/VIT.app/Base.lproj/Main.storyboardc/u6Z-8E-SEh-view-bx6-DN-bP3.nib ... 
+2020-07-22 12:00:35 +0000  6435 bytes for ./Payload/VIT.app/Base.lproj/Main.storyboardc/u6Z-8E-SEh-view-bx6-DN-bP3.nib
+2020-07-22 12:00:35 +0000  copying file ./Payload/VIT.app/Base.lproj/Main.storyboardc/StartingViewController.nib ... 
+2020-07-22 12:00:35 +0000  1385 bytes for ./Payload/VIT.app/Base.lproj/Main.storyboardc/StartingViewController.nib
+2020-07-22 12:00:35 +0000  copying file ./Payload/VIT.app/Base.lproj/Main.storyboardc/YIV-ue-CUI-view-Ecp-zJ-KS5.nib ... 
+2020-07-22 12:00:35 +0000  7928 bytes for ./Payload/VIT.app/Base.lproj/Main.storyboardc/YIV-ue-CUI-view-Ecp-zJ-KS5.nib
+2020-07-22 12:00:35 +0000  copying file ./Payload/VIT.app/Base.lproj/Main.storyboardc/Info.plist ... 
+2020-07-22 12:00:35 +0000  393 bytes for ./Payload/VIT.app/Base.lproj/Main.storyboardc/Info.plist
+copying file ./Payload/VIT.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib ... 
+2020-07-22 12:00:35 +0000  1197 bytes for ./Payload/VIT.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib
+2020-07-22 12:00:35 +0000  copying file ./Payload/VIT.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib ... 
+2020-07-22 12:00:35 +0000  896 bytes for ./Payload/VIT.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib
+copying file ./Payload/VIT.app/Base.lproj/LaunchScreen.storyboardc/Info.plist ... 
+2020-07-22 12:00:35 +0000  258 bytes for ./Payload/VIT.app/Base.lproj/LaunchScreen.storyboardc/Info.plist
+copying file ./Payload/VIT.app/VIT ... 
+2020-07-22 12:00:35 +0000  946960 bytes for ./Payload/VIT.app/VIT
+2020-07-22 12:00:35 +0000  copying file ./Payload/VIT.app/Assets.car ... 
+2020-07-22 12:00:35 +0000  223023 bytes for ./Payload/VIT.app/Assets.car
+2020-07-22 12:00:35 +0000  copying file ./Payload/VIT.app/embedded.mobileprovision ... 
+7377 bytes for ./Payload/VIT.app/embedded.mobileprovision
+copying file ./Payload/VIT.app/Info.plist ... 
+1606 bytes for ./Payload/VIT.app/Info.plist
+copying file ./Payload/VIT.app/PkgInfo ... 
+8 bytes for ./Payload/VIT.app/PkgInfo
+2020-07-22 12:00:35 +0000  /usr/bin/ditto exited with 0
+2020-07-22 12:00:35 +0000  Processing step: IDEDistributionAppStoreInformationStep
+2020-07-22 12:00:35 +0000  Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2020-07-22 12:00:35 +0000  Processing step: IDEDistributionGenerateProcessedDistributionItems
+2020-07-22 12:00:35 +0000  IDEDistributionItem init <DVTFilePath:0x7fef93217350:'/var/folders/mw/92pbl7xx03s6pb0kzn_5zny00000gn/T/XcodeDistPipeline.~~~chBIO8/Root/Payload/VIT.app'>
+2020-07-22 12:00:35 +0000  Processing step: IDEDistributionCreateManifestStep
+2020-07-22 12:00:35 +0000  Skipping step: IDEDistributionCreateManifestStep because it said so

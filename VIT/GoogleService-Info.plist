@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>350310343815-1i8sh10ear3omviqoneme38u01d18f2m.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.350310343815-1i8sh10ear3omviqoneme38u01d18f2m</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAUvOQ8m6VvRqnIjyTn9Q8sRN1dVjWnMdA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>350310343815</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.aritropaul.VIT</string>
+	<key>PROJECT_ID</key>
+	<string>uni-crash</string>
+	<key>STORAGE_BUCKET</key>
+	<string>uni-crash.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:350310343815:ios:d3e00b0fa4e05914d1c422</string>
+	<key>DATABASE_URL</key>
+	<string>https://uni-crash.firebaseio.com</string>
+</dict>
+</plist>
