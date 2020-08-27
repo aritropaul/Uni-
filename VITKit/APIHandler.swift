@@ -12,7 +12,7 @@ class VIT {
     static let shared = VIT()
     static var loggedIn = false
     
-    func getMobileNumber(completion: @escaping(Result<String, Error>)->Void) {
+    func getMobileNumber(completion: @escaping(Result<String, APIError>)->Void) {
         getProfile { (result) in
             switch result {
                 case .success(let profile) : completion(.success(profile.mobileNo ?? ""))
@@ -21,7 +21,7 @@ class VIT {
         }
     }
     
-    func getProfile(completion: @escaping(Result<Profile, Error>)->Void) {
+    func getProfile(completion: @escaping(Result<Profile, APIError>)->Void) {
         print("⤵️ Getting Profile")
         guard let url = profileURL else { return }
         let session = URLSession.shared
@@ -32,16 +32,20 @@ class VIT {
                     print("✅ Profile Success")
                     completion(.success(profile))
                 }
+                else if response.statusCode == 429 {
+                    print("❌ Profile Failure")
+                    completion(.failure(.tooManyRequests(message: "Try again later")))
+                }
             }
             else {
                 print("❌ Profile Failure")
-                completion(.failure(error!))
+                completion(.failure(.noResponse(message: "Did not get a response")))
             }
         }
         task.resume()
     }
     
-    func getTimetable(completion: @escaping(Result<Timetable, Error>)->Void) {
+    func getTimetable(completion: @escaping(Result<Timetable, APIError>)->Void) {
         print("⤵️ Getting Timetable")
         guard let url = timetableURL else { return }
         let session = URLSession.shared
@@ -54,20 +58,23 @@ class VIT {
                     }
                     else {
                         print("❌ Timetable Failure")
-                        completion(.failure(error!))
+                        completion(.failure(.decodingError(message: "Couldn't get timetable")))
                     }
-                    
+                }
+                else if response.statusCode == 429 {
+                    print("❌ Timetable Failure")
+                    completion(.failure(.tooManyRequests(message: "Try again later")))
                 }
             }
             else {
                 print("❌ Timetable Failure")
-                completion(.failure(error!))
+                completion(.failure(.noResponse(message: "Did not get a response")))
             }
         }
         task.resume()
     }
     
-    func getMarks(completion: @escaping(Result<Marks, Error>)->Void) {
+    func getMarks(completion: @escaping(Result<Marks, APIError>)->Void) {
         print("⤵️ Getting Marks")
         guard let url = marksURL else { return }
         let session = URLSession.shared
@@ -78,16 +85,20 @@ class VIT {
                     print("✅ Marks Success")
                     completion(.success(marks))
                 }
+                else if response.statusCode == 429 {
+                    print("❌ Marks Failure")
+                    completion(.failure(.tooManyRequests(message: "Try again later")))
+                }
             }
             else {
                 print("❌ Marks Failure")
-                completion(.failure(error!))
+                completion(.failure(.noResponse(message: "Did not get a response")))
             }
         }
         task.resume()
     }
     
-    func getDAs(completion: @escaping(Result<[AssignmentDetail], Error>)->Void) {
+    func getDAs(completion: @escaping(Result<[AssignmentDetail], APIError>)->Void) {
         print("⤵️ Getting DAs")
         guard let url = DAURL else { return }
         let session = URLSession.shared
@@ -98,16 +109,20 @@ class VIT {
                     print("✅ DA Success")
                     completion(.success(assignment.assignmentDetail))
                 }
+                else if response.statusCode == 429 {
+                    print("❌ DA Failure")
+                    completion(.failure(.tooManyRequests(message: "Try again later")))
+                }
             }
             else {
                 print("❌ DA Failure")
-                completion(.failure(error!))
+                completion(.failure(.noResponse(message: "Did not get a response")))
             }
         }
         task.resume()
     }
     
-    func getGrades(completion: @escaping(Result<Grades, Error>)->Void) {
+    func getGrades(completion: @escaping(Result<Grades, APIError>)->Void) {
         print("⤵️ Getting Grades")
         guard let url = gradesURL else { return }
         let session = URLSession.shared
@@ -118,10 +133,14 @@ class VIT {
                     print("✅ Grades Success")
                     completion(.success(grades))
                 }
+                else if response.statusCode == 429 {
+                    print("❌ Grades Failure")
+                    completion(.failure(.tooManyRequests(message: "Try again later")))
+                }
             }
             else {
                 print("❌ Grades Failure")
-                completion(.failure(error!))
+                completion(.failure(.noResponse(message: "Did not get a response")))
             }
         }
         task.resume()
