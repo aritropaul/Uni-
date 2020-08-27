@@ -30,7 +30,9 @@ extension UIViewController {
         toast.messageLabel.text = message
         
         let keyWindow: UIView = (UIApplication.shared.keyWindow ?? UIWindow())
-        toast.frame = CGRect(x: keyWindow.frame.midX/2 , y: -50, width: 200, height: 50)
+        let size = message.size(withAttributes:[.font: UIFont.boldSystemFont(ofSize: 15)])
+        let width = min(size.width + 90, 200)
+        toast.frame = CGRect(x: keyWindow.frame.midX - width/2 , y: -50, width: width, height: 50)
         keyWindow.addSubview(toast)
         keyWindow.bringSubviewToFront(toast)
         

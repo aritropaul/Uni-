@@ -87,6 +87,47 @@ class VIT {
         task.resume()
     }
     
+    func getDAs(completion: @escaping(Result<[AssignmentDetail], Error>)->Void) {
+        print("⤵️ Getting DAs")
+        guard let url = DAURL else { return }
+        let session = URLSession.shared
+        let task = session.dataTask(with: url) { (data, response, error) in
+            if let response = response as? HTTPURLResponse, let data = data {
+                if response.statusCode == 200 {
+                    let assignment = try! JSONDecoder().decode(Assignment.self, from: data)
+                    print("✅ DA Success")
+                    completion(.success(assignment.assignmentDetail))
+                }
+            }
+            else {
+                print("❌ DA Failure")
+                completion(.failure(error!))
+            }
+        }
+        task.resume()
+    }
+    
+    func getGrades(completion: @escaping(Result<Grades, Error>)->Void) {
+        print("⤵️ Getting Grades")
+        guard let url = gradesURL else { return }
+        let session = URLSession.shared
+        let task = session.dataTask(with: url) { (data, response, error) in
+            if let response = response as? HTTPURLResponse, let data = data {
+                if response.statusCode == 200 {
+                    let grades = try! JSONDecoder().decode(Grades.self, from: data)
+                    print("✅ Grades Success")
+                    completion(.success(grades))
+                }
+            }
+            else {
+                print("❌ Grades Failure")
+                completion(.failure(error!))
+            }
+        }
+        task.resume()
+    }
+    
+    
     func saveLoginState() {
         UserDefaults.standard.set(VIT.loggedIn, forKey: "login")
         UserDefaults.standard.set(regNum, forKey: "regno")

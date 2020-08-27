@@ -172,7 +172,7 @@ class TimeTableViewController: UITableViewController {
                 let timeString = self.days[self.selectedDay] + " " + (today[indexPath.row].inTime ?? "")
                 print(timeString)
                 let time = formatter.date(from: timeString)
-                scheduleNotification(course: course, time: time!)
+                scheduleClassNotification(course: course, time: time!)
                 self.showToast(with: "Reminder Set for \(course.abbr())")
             }
             

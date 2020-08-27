@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import UserNotifications
 import Firebase
+import FirebaseCore
 import FirebaseCrashlytics
+import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {

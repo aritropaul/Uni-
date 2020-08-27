@@ -17,6 +17,16 @@ enum Semesters : String, CaseIterable {
     case FallSemester202021 = "FS 2020-21"
 }
 
+enum SemesterMap : String, CaseIterable {
+    case FallSemester201819 = "VL2018191|Fall Semester 2018-19"
+    case WinterSemester201819 = "VL2018195|Winter Semester 2018-19"
+    case WinterSemester201920 = "VL2019205|Winter Semester 2019-20"
+    case FallSemester201920 = "VL2019201|Fall Semester 2019-20"
+    case FallSemester201718 = "VL2017181|Fall Semester 2017-18"
+    case WinterSemester201718 = "VL2017185|Winter Semester 2017-18"
+    case FallSemester202021 = "VL20202101|Fall Semester 2020-21"
+}
+
 struct Marks: Codable {
     var markView: MarkView?
 }

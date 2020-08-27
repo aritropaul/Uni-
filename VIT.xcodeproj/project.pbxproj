@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		240E732D888F45C2A30EF80F /* Pods_VIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE013649E4728B765D61DD8 /* Pods_VIT.framework */; };
+		29864A4DA3B7CA06AB597BEC /* Pods_VIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63EB9382464865A68B5808C /* Pods_VIT.framework */; };
 		300D001324C6FC86005A0DD0 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D001224C6FC86005A0DD0 /* ProfileModel.swift */; };
 		300D001524C6FD21005A0DD0 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D001424C6FD21005A0DD0 /* APIError.swift */; };
 		300D001724C70BF5005A0DD0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D001624C70BF5005A0DD0 /* ProfileViewController.swift */; };
@@ -20,12 +20,20 @@
 		300D002524C79843005A0DD0 /* MarksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D002424C79843005A0DD0 /* MarksModel.swift */; };
 		300D002724C7998F005A0DD0 /* MarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D002624C7998F005A0DD0 /* MarksViewController.swift */; };
 		300D002924C79AA0005A0DD0 /* MarksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D002824C79AA0005A0DD0 /* MarksTableViewCell.swift */; };
+		30139C5924F6482400982B2E /* GradeMarksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30139C5824F6482400982B2E /* GradeMarksTableViewCell.swift */; };
 		301602D024CC48AD0023FED1 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301602CF24CC48AD0023FED1 /* StatusViewController.swift */; };
 		301602D424CC4D950023FED1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 301602D324CC4D950023FED1 /* GoogleService-Info.plist */; };
 		302FB6DF24F24C4800B12E87 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302FB6DE24F24C4800B12E87 /* Toast.swift */; };
 		302FB6E124F24C5900B12E87 /* Toast.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302FB6E024F24C5900B12E87 /* Toast.xib */; };
 		302FB6E324F250F600B12E87 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302FB6E224F250F600B12E87 /* Notifications.swift */; };
 		304D410924CCE14900A6626F /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304D410824CCE14900A6626F /* UIViewController+Extensions.swift */; };
+		305EB7A924F514CD00C32474 /* GradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305EB7A824F514CD00C32474 /* GradeTableViewCell.swift */; };
+		305EB7AB24F5152300C32474 /* DATableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305EB7AA24F5152300C32474 /* DATableViewCell.swift */; };
+		305EB7AD24F5158300C32474 /* DATableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305EB7AC24F5158300C32474 /* DATableViewController.swift */; };
+		305EB7AF24F515EA00C32474 /* GradesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305EB7AE24F515EA00C32474 /* GradesTableViewController.swift */; };
+		305EB7B124F51C2100C32474 /* DAModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305EB7B024F51C2100C32474 /* DAModel.swift */; };
+		305EB7B324F544AC00C32474 /* GradesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305EB7B224F544AC00C32474 /* GradesModel.swift */; };
+		305EB7B524F6406800C32474 /* GradeDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305EB7B424F6406800C32474 /* GradeDetailTableViewController.swift */; };
 		3064872624CE215F006001CD /* MarksDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3064872524CE215F006001CD /* MarksDetailViewController.swift */; };
 		307F03B224CCCD8D008EE044 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307F03B124CCCD8D008EE044 /* OTPViewController.swift */; };
 		30840E2124C6FBA200B172BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30840E2024C6FBA200B172BB /* AppDelegate.swift */; };
@@ -42,7 +50,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		114B80029606FACA6F1297FE /* Pods-VIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIT.debug.xcconfig"; path = "Target Support Files/Pods-VIT/Pods-VIT.debug.xcconfig"; sourceTree = "<group>"; };
 		300D001224C6FC86005A0DD0 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		300D001424C6FD21005A0DD0 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		300D001624C70BF5005A0DD0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +62,7 @@
 		300D002424C79843005A0DD0 /* MarksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksModel.swift; sourceTree = "<group>"; };
 		300D002624C7998F005A0DD0 /* MarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksViewController.swift; sourceTree = "<group>"; };
 		300D002824C79AA0005A0DD0 /* MarksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksTableViewCell.swift; sourceTree = "<group>"; };
+		30139C5824F6482400982B2E /* GradeMarksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeMarksTableViewCell.swift; sourceTree = "<group>"; };
 		301602CF24CC48AD0023FED1 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		301602D324CC4D950023FED1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		302FB6DE24F24C4800B12E87 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
@@ -62,6 +70,13 @@
 		302FB6E224F250F600B12E87 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		304D410724CCD33E00A6626F /* VIT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VIT.entitlements; sourceTree = "<group>"; };
 		304D410824CCE14900A6626F /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		305EB7A824F514CD00C32474 /* GradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeTableViewCell.swift; sourceTree = "<group>"; };
+		305EB7AA24F5152300C32474 /* DATableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DATableViewCell.swift; sourceTree = "<group>"; };
+		305EB7AC24F5158300C32474 /* DATableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DATableViewController.swift; sourceTree = "<group>"; };
+		305EB7AE24F515EA00C32474 /* GradesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesTableViewController.swift; sourceTree = "<group>"; };
+		305EB7B024F51C2100C32474 /* DAModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAModel.swift; sourceTree = "<group>"; };
+		305EB7B224F544AC00C32474 /* GradesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesModel.swift; sourceTree = "<group>"; };
+		305EB7B424F6406800C32474 /* GradeDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeDetailTableViewController.swift; sourceTree = "<group>"; };
 		3064872524CE215F006001CD /* MarksDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarksDetailViewController.swift; sourceTree = "<group>"; };
 		307F03B124CCCD8D008EE044 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		30840E1D24C6FBA200B172BB /* VIT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VIT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,8 +91,9 @@
 		30A15FD724F1091D00CDBCB7 /* AttendanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceTableViewCell.swift; sourceTree = "<group>"; };
 		30AE646524C9856D0076B1CA /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		30D2977B24C845110080CC2C /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
-		8FE013649E4728B765D61DD8 /* Pods_VIT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VIT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A81727D5648D283E28EF9734 /* Pods-VIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIT.release.xcconfig"; path = "Target Support Files/Pods-VIT/Pods-VIT.release.xcconfig"; sourceTree = "<group>"; };
+		6DDD8E131CC3AB0B67B50D7E /* Pods-VIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIT.debug.xcconfig"; path = "Target Support Files/Pods-VIT/Pods-VIT.debug.xcconfig"; sourceTree = "<group>"; };
+		B63EB9382464865A68B5808C /* Pods_VIT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VIT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F830AE51EE398A1D8421D0C8 /* Pods-VIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VIT.release.xcconfig"; path = "Target Support Files/Pods-VIT/Pods-VIT.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +102,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30AE646424C981D60076B1CA /* SPAlert in Frameworks */,
-				240E732D888F45C2A30EF80F /* Pods_VIT.framework in Frameworks */,
+				29864A4DA3B7CA06AB597BEC /* Pods_VIT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +112,9 @@
 		307F03B324CCD0A9008EE044 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				305EB7AC24F5158300C32474 /* DATableViewController.swift */,
+				305EB7B424F6406800C32474 /* GradeDetailTableViewController.swift */,
+				305EB7AE24F515EA00C32474 /* GradesTableViewController.swift */,
 				307F03B124CCCD8D008EE044 /* OTPViewController.swift */,
 				300D001E24C78BA5005A0DD0 /* StartingViewController.swift */,
 				30A15FD524F108F100CDBCB7 /* AttendanceTableViewController.swift */,
@@ -123,11 +142,14 @@
 		307F03B524CCD0C5008EE044 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				30139C5824F6482400982B2E /* GradeMarksTableViewCell.swift */,
 				30A15FD724F1091D00CDBCB7 /* AttendanceTableViewCell.swift */,
 				300D001A24C714E7005A0DD0 /* ClassTableViewCell.swift */,
 				300D002824C79AA0005A0DD0 /* MarksTableViewCell.swift */,
 				302FB6DE24F24C4800B12E87 /* Toast.swift */,
 				302FB6E024F24C5900B12E87 /* Toast.xib */,
+				305EB7A824F514CD00C32474 /* GradeTableViewCell.swift */,
+				305EB7AA24F5152300C32474 /* DATableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -139,7 +161,7 @@
 				30840E1F24C6FBA200B172BB /* VIT */,
 				30840E1E24C6FBA200B172BB /* Products */,
 				B0C88304E0A242DEDD204A38 /* Pods */,
-				70CD81EE1932A4E80398535F /* Frameworks */,
+				AA65C36E6FD22D18A760087C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -178,14 +200,16 @@
 				300D001224C6FC86005A0DD0 /* ProfileModel.swift */,
 				300D002424C79843005A0DD0 /* MarksModel.swift */,
 				300D001C24C71556005A0DD0 /* TimeTableModel.swift */,
+				305EB7B024F51C2100C32474 /* DAModel.swift */,
+				305EB7B224F544AC00C32474 /* GradesModel.swift */,
 			);
 			path = VITKit;
 			sourceTree = "<group>";
 		};
-		70CD81EE1932A4E80398535F /* Frameworks */ = {
+		AA65C36E6FD22D18A760087C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8FE013649E4728B765D61DD8 /* Pods_VIT.framework */,
+				B63EB9382464865A68B5808C /* Pods_VIT.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -193,8 +217,8 @@
 		B0C88304E0A242DEDD204A38 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				114B80029606FACA6F1297FE /* Pods-VIT.debug.xcconfig */,
-				A81727D5648D283E28EF9734 /* Pods-VIT.release.xcconfig */,
+				6DDD8E131CC3AB0B67B50D7E /* Pods-VIT.debug.xcconfig */,
+				F830AE51EE398A1D8421D0C8 /* Pods-VIT.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -206,12 +230,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30840E3124C6FBA400B172BB /* Build configuration list for PBXNativeTarget "VIT" */;
 			buildPhases = (
-				9396E66CA4C0A32A80B253C5 /* [CP] Check Pods Manifest.lock */,
+				D4D5B44CE1EA7E87AE11C09B /* [CP] Check Pods Manifest.lock */,
 				30840E1924C6FBA200B172BB /* Sources */,
 				30840E1A24C6FBA200B172BB /* Frameworks */,
 				30840E1B24C6FBA200B172BB /* Resources */,
-				9DC02516B64E4031B83D1322 /* [CP] Embed Pods Frameworks */,
 				3080258F24CC3CC500003DCB /* ShellScript */,
+				3207581EB9646707CE73A9A1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -278,7 +302,6 @@
 /* Begin PBXShellScriptBuildPhase section */
 		3080258F24CC3CC500003DCB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 8;
 			files = (
 			);
@@ -296,7 +319,24 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
-		9396E66CA4C0A32A80B253C5 /* [CP] Check Pods Manifest.lock */ = {
+		3207581EB9646707CE73A9A1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VIT/Pods-VIT-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VIT/Pods-VIT-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VIT/Pods-VIT-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4D5B44CE1EA7E87AE11C09B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -318,23 +358,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9DC02516B64E4031B83D1322 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VIT/Pods-VIT-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VIT/Pods-VIT-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VIT/Pods-VIT-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -342,18 +365,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				305EB7B324F544AC00C32474 /* GradesModel.swift in Sources */,
 				300D002924C79AA0005A0DD0 /* MarksTableViewCell.swift in Sources */,
 				302FB6DF24F24C4800B12E87 /* Toast.swift in Sources */,
 				300D001924C71254005A0DD0 /* TimeTableViewController.swift in Sources */,
 				30D2977C24C845110080CC2C /* Endpoints.swift in Sources */,
+				305EB7AF24F515EA00C32474 /* GradesTableViewController.swift in Sources */,
 				3064872624CE215F006001CD /* MarksDetailViewController.swift in Sources */,
+				305EB7AB24F5152300C32474 /* DATableViewCell.swift in Sources */,
 				300D001724C70BF5005A0DD0 /* ProfileViewController.swift in Sources */,
 				300D001324C6FC86005A0DD0 /* ProfileModel.swift in Sources */,
 				30840E2124C6FBA200B172BB /* AppDelegate.swift in Sources */,
 				300D001F24C78BA6005A0DD0 /* StartingViewController.swift in Sources */,
+				305EB7A924F514CD00C32474 /* GradeTableViewCell.swift in Sources */,
 				300D001D24C71556005A0DD0 /* TimeTableModel.swift in Sources */,
 				300D001B24C714E7005A0DD0 /* ClassTableViewCell.swift in Sources */,
+				305EB7B124F51C2100C32474 /* DAModel.swift in Sources */,
 				30A15FD624F108F100CDBCB7 /* AttendanceTableViewController.swift in Sources */,
+				305EB7AD24F5158300C32474 /* DATableViewController.swift in Sources */,
 				30A15FD824F1091D00CDBCB7 /* AttendanceTableViewCell.swift in Sources */,
 				30AE646624C9856D0076B1CA /* UITableView+Extensions.swift in Sources */,
 				30840E2324C6FBA200B172BB /* SceneDelegate.swift in Sources */,
@@ -364,6 +393,8 @@
 				300D002324C79448005A0DD0 /* TabBarController.swift in Sources */,
 				300D002124C78F83005A0DD0 /* UIStoryboard+Extensions.swift in Sources */,
 				300D002724C7998F005A0DD0 /* MarksViewController.swift in Sources */,
+				30139C5924F6482400982B2E /* GradeMarksTableViewCell.swift in Sources */,
+				305EB7B524F6406800C32474 /* GradeDetailTableViewController.swift in Sources */,
 				300D002524C79843005A0DD0 /* MarksModel.swift in Sources */,
 				301602D024CC48AD0023FED1 /* StatusViewController.swift in Sources */,
 				300D001524C6FD21005A0DD0 /* APIError.swift in Sources */,
@@ -510,13 +541,13 @@
 		};
 		30840E3224C6FBA400B172BB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 114B80029606FACA6F1297FE /* Pods-VIT.debug.xcconfig */;
+			baseConfigurationReference = 6DDD8E131CC3AB0B67B50D7E /* Pods-VIT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = VIT/VIT.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2J3WW2KWBU;
 				INFOPLIST_FILE = VIT/Info.plist;
@@ -524,7 +555,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.8;
+				MARKETING_VERSION = 1.0.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aritropaul.VIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -534,20 +565,20 @@
 		};
 		30840E3324C6FBA400B172BB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A81727D5648D283E28EF9734 /* Pods-VIT.release.xcconfig */;
+			baseConfigurationReference = F830AE51EE398A1D8421D0C8 /* Pods-VIT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = VIT/VIT.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 2J3WW2KWBU;
 				INFOPLIST_FILE = VIT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.8;
+				MARKETING_VERSION = 1.0.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aritropaul.VIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
