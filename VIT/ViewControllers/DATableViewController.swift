@@ -15,6 +15,7 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
     var isLoading = false
     var dateSorted = true
     @IBOutlet weak var filterButton: UIBarButtonItem!
+    let generator = UIImpactFeedbackGenerator(style: .medium)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,7 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
                 DispatchQueue.main.async {
                     self.tableView.restore()
                     self.tableView.reloadData()
+                    self.generator.impactOccurred()
                     if (self.refreshControl?.isRefreshing == true) {
                         self.refreshControl?.endRefreshing()
                     }
@@ -148,11 +150,13 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
             let alarmAction = UIAction(title: "Set a reminder", image: UIImage(systemName: "alarm")) { (action) in
                 let time = self.assignments[indexPath.row].dueDate?.toDate()
                 scheduleDANotification(assignment: task!, course: course!, time: time!)
+                self.generator.impactOccurred()
                 self.showToast(with: "Reminder Set for \(course?.abbr() ?? "")")
             }
             
             let attendanceAction = UIAction(title: "Contact Faculty", image: UIImage(systemName: "envelope.fill")) { (action) in
                 self.sendEmail(self.assignments[indexPath.row].facultyMail ?? "", assignment: self.assignments[indexPath.row].assignmentTitle ?? "")
+                self.generator.impactOccurred()
             }
             
             let menu = UIMenu(title: task!, children: [alarmAction, attendanceAction])

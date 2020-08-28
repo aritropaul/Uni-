@@ -12,7 +12,16 @@ class GradesTableViewController: UITableViewController {
     var grades: Grades?
     var selectedSemester = SemesterMap.WinterSemester201920.rawValue
     var isLoading = false
+    let generator = UIImpactFeedbackGenerator(style: .medium)
     var selectedSubject : GradeMarkView!
+    var cgpa = 0.0
+    var totalCredits = 0
+    var gpa = 0.0
+    var semCredits = 0
+    
+    @IBOutlet weak var GPAView: UIView!
+    @IBOutlet weak var CGPALabel: UILabel!
+    @IBOutlet weak var semGPALabel: UILabel!
     
     @IBOutlet weak var semesterButton: UIBarButtonItem!
     
@@ -22,6 +31,39 @@ class GradesTableViewController: UITableViewController {
         semesterButton.menu = menuBuilder()
         semesterButton.primaryAction = nil
         semesterButton.title = Semesters.WinterSemester201920.rawValue
+        CGPALabel.text = ""
+        semGPALabel.text = ""
+        
+        let interaction = UIContextMenuInteraction(delegate: self)
+        GPAView.addInteraction(interaction)
+    }
+    
+    func calculateCGPA() {
+        for (_, value) in self.grades?.gradeView ?? [String : GradeView]() {
+            for subject in value.markView ?? [GradeMarkView]() {
+                if subject.grade != "P" {
+                    cgpa += Double((subject.c ?? 0) * (gradeMap[subject.grade!] ?? 0))
+                    totalCredits += subject.c ?? 1
+                }
+            }
+        }
+        cgpa = cgpa / Double(totalCredits)
+        CGPALabel.text = String(format: "%.2f", cgpa)
+    }
+    
+    func calculateGPA(sem: String) {
+        gpa = 0.0
+        semCredits = 0
+        let subject = self.grades?.gradeView?[sem]
+        for item in subject?.markView ?? [GradeMarkView]() {
+            if item.grade != "P" {
+                gpa += Double((item.c ?? 0) * (gradeMap[item.grade!] ?? 0))
+                semCredits += item.c ?? 1
+            }
+        }
+        
+        gpa = gpa / Double(semCredits)
+        semGPALabel.text = String(format: "%.2f", gpa)
     }
     
     func getGrades() {
@@ -33,6 +75,8 @@ class GradesTableViewController: UITableViewController {
                 self.isLoading = false
                 self.grades = grades
                 DispatchQueue.main.async {
+                    self.calculateCGPA()
+                    self.calculateGPA(sem: self.selectedSemester)
                     self.tableView.restore()
                     self.tableView.reloadData()
                 }
@@ -74,6 +118,8 @@ class GradesTableViewController: UITableViewController {
             selectedSemester = SemesterMap.FallSemester202021.rawValue
         }
         semesterButton.title = sem.rawValue
+        self.calculateGPA(sem: selectedSemester)
+        generator.impactOccurred()
         self.tableView.reloadData()
     }
 
@@ -134,4 +180,29 @@ class GradesTableViewController: UITableViewController {
         }
     }
     
+}
+
+extension GradesTableViewController : UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (action) -> UIMenu? in
+            
+            let shareGPAAction = UIAction(title: "Share GPA", image: UIImage(systemName: "square.and.arrow.up")) { (action) in
+                let items = ["I got " + String(format: "%.2f", self.gpa) + " GPA this sem! Can you beat it?"]
+                let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+                self.present(ac, animated: true)
+            }
+            
+            let shareCGPAAction = UIAction(title: "Share CGPA", image: UIImage(systemName: "square.and.arrow.up.on.square")) { (action) in
+                let items = ["My CGPA is now " + String(format: "%.2f", self.cgpa) + " ! Yay!"]
+                let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+                self.present(ac, animated: true)
+            }
+            
+            let menu = UIMenu(title: "GPA", children: [shareGPAAction, shareCGPAAction])
+            return menu
+            
+        }
+        
+        return configuration
+    }
 }

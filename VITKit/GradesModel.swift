@@ -29,3 +29,12 @@ struct GradeStudentMarkList : Codable {
     let maxMark : String?
     let marksGiven: Double?
 }
+
+let gradeMap = ["S" : 10,
+                "A" : 9,
+                "B" : 8,
+                "C" : 7,
+                "D" : 6,
+                "E" : 5,
+                "F" : 4,
+                "N" : 0]

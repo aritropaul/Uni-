@@ -18,7 +18,7 @@ class TimeTableViewController: UITableViewController {
     var isLoading = false
     let generator = UIImpactFeedbackGenerator(style: .medium)
     var detailAttendance = [GetAttendanceDetail]()
-    var subject = String()
+    var subject = Day()
     var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     var menu : PinterestSegment!
     var selectedDay = 0
@@ -34,9 +34,7 @@ class TimeTableViewController: UITableViewController {
             self.MenuSelector(day: index)
             self.tableView.reloadData()
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+        
         if let currentDay = timetable.currentDay {
             _ = self.TTforDay(day: currentDay)
             self.tableView.reloadData()
@@ -106,6 +104,39 @@ class TimeTableViewController: UITableViewController {
         selectedDay = day
         print(day)
         generator.impactOccurred()
+    }
+    
+    func _75Calc(SU: String, TU: String) -> Int {
+        var SUnits = Double(SU) ?? 0.0
+        var TUnits = Double(TU) ?? 1.0
+        var classes = 0
+        var att = SUnits/TUnits
+        if att < 0.75 {
+            while (att <= 0.75) {
+                TUnits += 1
+                SUnits += 1
+                att = SUnits/TUnits
+                if att >= 0.75 {
+                    return classes
+                }
+                else {
+                    classes -= 1
+                }
+            }
+        }
+        else {
+            while (att >= 0.75) {
+                TUnits += 1
+                att = SUnits/TUnits
+                if att <= 0.75 {
+                    return classes
+                }
+                else {
+                    classes += 1
+                }
+            }
+        }
+        return classes
     }
     
     
@@ -178,13 +209,15 @@ class TimeTableViewController: UITableViewController {
             
             let attendanceAction = UIAction(title: "View Attendance", image: UIImage(systemName: "person.crop.circle.badge.checkmark")) { (action) in
                 self.detailAttendance = today[indexPath.row].getAttendanceDetails ?? [GetAttendanceDetail]()
-                self.subject = today[indexPath.row].course ?? "Attendance"
+                self.subject = today[indexPath.row]
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "Attendance", sender: Any?.self)
                 }
             }
             
-            let menu = UIMenu(title: course, children: [alarmAction, attendanceAction])
+            let classes = self._75Calc(SU: today[indexPath.row].studentUnits!, TU: today[indexPath.row].totalUnits!)
+            let titleText = classes < 0 ? "Must attend \(classes) Classes" : "Can miss \(classes) Classes"
+            let menu = UIMenu(title: course + "\n" + titleText, children: [alarmAction, attendanceAction])
             return menu
         }
         return configuration
@@ -194,7 +227,7 @@ class TimeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let today = TTforDay(day: day)
         detailAttendance = today[indexPath.row].getAttendanceDetails ?? [GetAttendanceDetail]()
-        subject = today[indexPath.row].course ?? "Attendance"
+        subject = today[indexPath.row]
         self.performSegue(withIdentifier: "Attendance", sender: Any?.self)
     }
     
