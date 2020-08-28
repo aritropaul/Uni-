@@ -156,7 +156,8 @@ class GradesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let subject = grades?.gradeView?[selectedSemester]?.markView?[indexPath.row]
-        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (action) -> UIMenu? in
+        let identifier = NSString(string: "\(indexPath.row)")
+        let configuration = UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { (action) -> UIMenu? in
             let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { (action) in
                 let items = ["I got a \(subject?.grade ?? "") in \(subject?.courseTitle ?? "")! What did you get?"]
                 let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
@@ -168,6 +169,16 @@ class GradesTableViewController: UITableViewController {
         }
         return configuration
     }
+    
+    override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        let index = Int(configuration.identifier as! String) ?? -1
+        let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0))
+        let params = UIPreviewParameters()
+        params.visiblePath = UIBezierPath(roundedRect: cell?.bounds ?? CGRect(), cornerRadius: 12)
+        params.backgroundColor = .clear
+        return UITargetedPreview(view: cell ?? GradeTableViewCell(), parameters: params)
+    }
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedSubject = grades?.gradeView?[selectedSemester]?.markView?[indexPath.row]

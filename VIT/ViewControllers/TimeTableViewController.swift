@@ -196,7 +196,8 @@ class TimeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let today = TTforDay(day: day)
         let course = today[indexPath.row].course ?? ""
-        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (actions) -> UIMenu? in
+        let identifier = NSString(string: "\(indexPath.row)")
+        let configuration = UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { (actions) -> UIMenu? in
             let alarmAction = UIAction(title: "Set a reminder", image: UIImage(systemName: "alarm")) { (action) in
                 let formatter = DateFormatter()
                 formatter.dateFormat = "E hh:mm a"
@@ -221,6 +222,15 @@ class TimeTableViewController: UITableViewController {
             return menu
         }
         return configuration
+    }
+    
+    override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        let index = Int(configuration.identifier as! String) ?? -1
+        let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0))
+        let params = UIPreviewParameters()
+        params.visiblePath = UIBezierPath(roundedRect: cell?.bounds ?? CGRect(), cornerRadius: 12)
+        params.backgroundColor = .clear
+        return UITargetedPreview(view: cell ?? ClassTableViewCell(), parameters: params)
     }
     
     

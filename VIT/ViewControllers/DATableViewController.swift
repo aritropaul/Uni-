@@ -146,7 +146,8 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let course = self.assignments[indexPath.row].course?.components(separatedBy: " - ")[1]
         let task = self.assignments[indexPath.row].assignmentTitle
-        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (action) -> UIMenu? in
+        let identifier = NSString(string: "\(indexPath.row)")
+        let configuration = UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { (action) -> UIMenu? in
             let alarmAction = UIAction(title: "Set a reminder", image: UIImage(systemName: "alarm")) { (action) in
                 let time = self.assignments[indexPath.row].dueDate?.toDate()
                 scheduleDANotification(assignment: task!, course: course!, time: time!)
@@ -159,10 +160,32 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
                 self.generator.impactOccurred()
             }
             
-            let menu = UIMenu(title: task!, children: [alarmAction, attendanceAction])
+            let dateComponentsFormatter = DateComponentsFormatter()
+            dateComponentsFormatter.allowedUnits = [.day, .hour]
+            dateComponentsFormatter.maximumUnitCount = 1
+            dateComponentsFormatter.unitsStyle = .full
+            var daysLeft =  dateComponentsFormatter.string(from: (self.assignments[indexPath.row].dueDate?.toDate()?.removing(days: -1))!, to: Date())
+            print(daysLeft)
+            if daysLeft!.contains("-") || daysLeft!.contains("hour") {
+                daysLeft = "Due in " + daysLeft!.replacingOccurrences(of: "-", with: "")
+            }
+            else {
+                daysLeft = "Deadline has passed"
+            }
+            
+            let menu = UIMenu(title: task! + "\n" + daysLeft! , children: [alarmAction, attendanceAction])
             return menu
         }
         
         return configuration
+    }
+    
+    override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        let index = Int(configuration.identifier as! String) ?? -1
+        let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0))
+        let params = UIPreviewParameters()
+        params.visiblePath = UIBezierPath(roundedRect: cell?.bounds ?? CGRect(), cornerRadius: 12)
+        params.backgroundColor = .clear
+        return UITargetedPreview(view: cell ?? DATableViewCell(), parameters: params)
     }
 }
