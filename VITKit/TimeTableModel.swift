@@ -81,3 +81,6 @@ enum AttendanceStatus: String, Codable {
     case present = "Present"
     case absent = "Absent"
 }
+
+
+var cachedTimetable = Timetable()

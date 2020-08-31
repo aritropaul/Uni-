@@ -68,7 +68,11 @@ class StartingViewController: UIViewController {
                 }
                 
             case .failure(let error):
-                SPAlert.present(message: error.localizedDescription, haptic: .error)
+                DispatchQueue.main.async {
+                    alert.dismiss(animated: true) {
+                        SPAlert.present(message: "Failed to Verify number", haptic: .error)
+                    }
+                }
             }
         }
     }

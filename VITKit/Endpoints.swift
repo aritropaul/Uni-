@@ -28,3 +28,5 @@ func generateURLs() {
     timetableURL = URL(string: "https://vitian-wrapper.herokuapp.com/timetable/\(regNum)")
     marksURL = URL(string: "https://vitian-wrapper.herokuapp.com/marks/\(regNum)")
 }
+
+let dataCache = URLCache(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)

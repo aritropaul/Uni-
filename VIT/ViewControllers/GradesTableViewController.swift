@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SPAlert
+import ALRT
 
 class GradesTableViewController: UITableViewController {
 
@@ -27,7 +29,7 @@ class GradesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getGrades()
+        getGrades(cached: true)
         semesterButton.menu = menuBuilder()
         semesterButton.primaryAction = nil
         semesterButton.title = Semesters.WinterSemester201920.rawValue
@@ -66,10 +68,10 @@ class GradesTableViewController: UITableViewController {
         semGPALabel.text = String(format: "%.2f", gpa)
     }
     
-    func getGrades() {
+    func getGrades(cached: Bool = false) {
         isLoading = true
         self.tableView.setLoadingView(title: "Loading Grades")
-        VIT.shared.getGrades { (result) in
+        VIT.shared.getGrades(cache: cached) { (result) in
             switch result {
             case .success(let grades):
                 self.isLoading = false
@@ -81,7 +83,13 @@ class GradesTableViewController: UITableViewController {
                     self.tableView.reloadData()
                 }
             case .failure(let error):
-                print(error)
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.tableView.restore()
+                    ALRT.create(.alert, title: "Error", message: error.localizedDescription).addAction("Retry", style: .default, preferred: true) { (action, textFields) in
+                        self.getGrades()
+                    }.addCancel().show()
+                }
             }
                 
         }

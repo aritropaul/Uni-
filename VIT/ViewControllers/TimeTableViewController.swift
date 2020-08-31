@@ -7,6 +7,7 @@
 
 import UIKit
 import SPAlert
+import ALRT
 import PinterestSegment
 
 class TimeTableViewController: UITableViewController {
@@ -25,7 +26,9 @@ class TimeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getTimeTable()
+        timetable = cachedTimetable
+        getTimeTable(cached: true)
+        getTimeTable(cached: false)
         self.refreshControl?.addTarget(self, action: #selector(getTimeTable), for: .valueChanged)
         dayBarButton.title = ""
         didGetTimetable = true
@@ -37,19 +40,21 @@ class TimeTableViewController: UITableViewController {
         
         if let currentDay = timetable.currentDay {
             _ = self.TTforDay(day: currentDay)
+            menu.setSelectIndex(index: selectedDay, animated: true)
             self.tableView.reloadData()
         }
     }
 
-    @objc func getTimeTable() {
+    @objc func getTimeTable(cached: Bool = false) {
         isLoading = true
         self.tableView.setLoadingView(title: "Loading timetable")
-        VIT.shared.getTimetable { (result) in
+        VIT.shared.getTimetable(cache: cached) { (result) in
             switch result {
             case .success(let timetable) :
                 self.timetable = timetable
                 DispatchQueue.main.async {
                     _ = self.TTforDay(day: timetable.currentDay!)
+                    self.menu.setSelectIndex(index: self.selectedDay, animated: true)
                     self.isLoading = false
                     self.tableView.restore()
                     self.tableView.reloadData()
@@ -58,7 +63,13 @@ class TimeTableViewController: UITableViewController {
                     }
                 }
             case .failure(let error) :
-                SPAlert.present(message: error.localizedDescription, haptic: .error)
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.tableView.restore()
+                    ALRT.create(.alert, title: "Error", message: error.localizedDescription).addAction("Retry", style: .default, preferred: true) { (action, textFields) in
+                        self.getTimeTable()
+                    }.addCancel().show()
+                }
             }
         }
     }
@@ -67,24 +78,31 @@ class TimeTableViewController: UITableViewController {
         switch day {
         case .mon:
             self.day = .mon
+            selectedDay = 0
             return timetable.timeTable?.mon ?? [Day]()
         case .tue:
             self.day = .tue
+            selectedDay = 1
             return timetable.timeTable?.tue ?? [Day]()
         case .wed:
             self.day = .wed
+            selectedDay = 2
             return timetable.timeTable?.wed ?? [Day]()
         case .thu:
             self.day = .thu
+            selectedDay = 3
             return timetable.timeTable?.thu ?? [Day]()
         case .fri:
             self.day = .fri
+            selectedDay = 4
             return timetable.timeTable?.fri ?? [Day]()
         case .sat:
             self.day = .sat
+            selectedDay = 5
             return timetable.timeTable?.sat ?? [Day]()
         case .sun:
             self.day = .sun
+            selectedDay = 6
             return timetable.timeTable?.sun ?? [Day]()
         }
     }
@@ -102,7 +120,6 @@ class TimeTableViewController: UITableViewController {
             self.day = .mon
         }
         selectedDay = day
-        print(day)
         generator.impactOccurred()
     }
     
@@ -208,7 +225,10 @@ class TimeTableViewController: UITableViewController {
                 self.showToast(with: "Reminder Set for \(course.abbr())")
             }
             
-            let attendanceAction = UIAction(title: "View Attendance", image: UIImage(systemName: "person.crop.circle.badge.checkmark")) { (action) in
+            let classes = self._75Calc(SU: today[indexPath.row].studentUnits!, TU: today[indexPath.row].totalUnits!)
+            let titleText = classes < 0 ? "Must attend \(classes) Classes" : "Can miss \(classes) Classes"
+            
+            let attendanceAction = UIAction(title: "View Attendance", image: UIImage(systemName: "person.crop.circle.badge.checkmark"), discoverabilityTitle: titleText) { (action) in
                 self.detailAttendance = today[indexPath.row].getAttendanceDetails ?? [GetAttendanceDetail]()
                 self.subject = today[indexPath.row]
                 DispatchQueue.main.async {
@@ -216,9 +236,7 @@ class TimeTableViewController: UITableViewController {
                 }
             }
             
-            let classes = self._75Calc(SU: today[indexPath.row].studentUnits!, TU: today[indexPath.row].totalUnits!)
-            let titleText = classes < 0 ? "Must attend \(classes) Classes" : "Can miss \(classes) Classes"
-            let menu = UIMenu(title: course + "\n" + titleText, children: [alarmAction, attendanceAction])
+            let menu = UIMenu(title: course, children: [alarmAction, attendanceAction])
             return menu
         }
         return configuration
@@ -258,7 +276,6 @@ class TimeTableViewController: UITableViewController {
         dayView.addSubview(menu)
         menu.isUserInteractionEnabled = true
         menu.indicatorColor = .white
-//        menu.setSelectIndex(index: selectedDay, animated: true)
 //        dayView.backgroundColor = .systemBackground
         return dayView
     }

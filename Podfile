@@ -11,5 +11,6 @@ target 'VIT' do
   pod 'Firebase/Auth' 
   pod 'OTPFieldView' 
   pod 'PinterestSegment'
+  pod 'ALRT', '~> 1.3.7'
 
 end

@@ -8,6 +8,7 @@
 import UIKit
 import SPAlert
 import MessageUI
+import ALRT
 
 class DATableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
@@ -19,7 +20,8 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadDA()
+        loadDA(cached: true)
+         loadDA(cached: false)
         self.refreshControl?.addTarget(self, action: #selector(loadDA), for: .valueChanged)
     }
     
@@ -42,14 +44,15 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
     }
     
     
-    @objc func loadDA() {
+    @objc func loadDA(cached: Bool = false) {
         isLoading = true
         self.tableView.setLoadingView(title: "Loading Assignments")
-        VIT.shared.getDAs { (result) in
+        VIT.shared.getDAs(cache: cached) { (result) in
             switch result {
             case .success(let assignments) :
                 self.isLoading = false
                 self.parseDA(assignmentDetail: assignments)
+                print(self.assignments)
                 DispatchQueue.main.async {
                     self.tableView.restore()
                     self.tableView.reloadData()
@@ -58,14 +61,21 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
                         self.refreshControl?.endRefreshing()
                     }
                 }
-            case .failure( _):
-                SPAlert.present(message: "Error", haptic: .error)
+            case .failure( let error ):
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.tableView.restore()
+                    ALRT.create(.alert, title: "Error", message: error.localizedDescription).addAction("Retry", style: .default, preferred: true) { (action, textFields) in
+                        self.loadDA()
+                    }.addCancel().show()
+                }
             }
         }
     }
     
     
     func parseDA(assignmentDetail: [AssignmentDetail]) {
+        assignments.removeAll()
         for assignment in assignmentDetail {
             for task in assignment.getDigitalAssignmentDetails ?? [GetDigitalAssignmentDetail]() {
                 let da = DA(assignmentTitle: task.optionTitle, dueDate: task.lastDate, course: assignment.courseName, facultyMail: assignment.email)
@@ -133,9 +143,11 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DACell", for: indexPath) as! DATableViewCell
-        cell.assignmentTitle.text = assignments[indexPath.row].assignmentTitle
-        cell.courseName.text = assignments[indexPath.row].course
-        cell.dateLabel.text = assignments[indexPath.row].dueDate?.date()
+        if indexPath != nil {
+            cell.assignmentTitle.text = assignments[indexPath.row].assignmentTitle
+            cell.courseName.text = assignments[indexPath.row].course
+            cell.dateLabel.text = assignments[indexPath.row].dueDate?.date()
+        }
         return cell
     }
     
@@ -148,36 +160,38 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
         let task = self.assignments[indexPath.row].assignmentTitle
         let identifier = NSString(string: "\(indexPath.row)")
         let configuration = UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { (action) -> UIMenu? in
-            let alarmAction = UIAction(title: "Set a reminder", image: UIImage(systemName: "alarm")) { (action) in
+            let alarmAction = UIAction(title: "Set a reminder", image: UIImage(systemName: "alarm"), discoverabilityTitle: self.getDaysLeft(indexPath: indexPath)) { (action) in
                 let time = self.assignments[indexPath.row].dueDate?.toDate()
                 scheduleDANotification(assignment: task!, course: course!, time: time!)
                 self.generator.impactOccurred()
                 self.showToast(with: "Reminder Set for \(course?.abbr() ?? "")")
             }
             
-            let attendanceAction = UIAction(title: "Contact Faculty", image: UIImage(systemName: "envelope.fill")) { (action) in
+            let attendanceAction = UIAction(title: "Contact Faculty", image: UIImage(systemName: "envelope.fill"), discoverabilityTitle: self.assignments[indexPath.row].facultyMail) { (action) in
                 self.sendEmail(self.assignments[indexPath.row].facultyMail ?? "", assignment: self.assignments[indexPath.row].assignmentTitle ?? "")
                 self.generator.impactOccurred()
             }
             
-            let dateComponentsFormatter = DateComponentsFormatter()
-            dateComponentsFormatter.allowedUnits = [.day, .hour]
-            dateComponentsFormatter.maximumUnitCount = 1
-            dateComponentsFormatter.unitsStyle = .full
-            var daysLeft =  dateComponentsFormatter.string(from: (self.assignments[indexPath.row].dueDate?.toDate()?.removing(days: -1))!, to: Date())
-            print(daysLeft)
-            if daysLeft!.contains("-") || daysLeft!.contains("hour") {
-                daysLeft = "Due in " + daysLeft!.replacingOccurrences(of: "-", with: "")
-            }
-            else {
-                daysLeft = "Deadline has passed"
-            }
-            
-            let menu = UIMenu(title: task! + "\n" + daysLeft! , children: [alarmAction, attendanceAction])
+            let menu = UIMenu(title: task!, children: [alarmAction, attendanceAction])
             return menu
         }
         
         return configuration
+    }
+    
+    func getDaysLeft(indexPath: IndexPath) -> String {
+        let dateComponentsFormatter = DateComponentsFormatter()
+        dateComponentsFormatter.allowedUnits = [.day, .hour]
+        dateComponentsFormatter.maximumUnitCount = 1
+        dateComponentsFormatter.unitsStyle = .full
+        var daysLeft =  dateComponentsFormatter.string(from: (self.assignments[indexPath.row].dueDate?.toDate()?.removing(days: -1))!, to: Date())
+        if daysLeft!.contains("-") || daysLeft!.contains("hour") {
+            daysLeft = "Due in " + daysLeft!.replacingOccurrences(of: "-", with: "")
+        }
+        else {
+            daysLeft = "Deadline has passed"
+        }
+        return daysLeft ?? ""
     }
     
     override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {

@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-VIT/Pods-VIT-frameworks.sh
+${BUILT_PRODUCTS_DIR}/ALRT/ALRT.framework
 ${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework
 ${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework
 ${BUILT_PRODUCTS_DIR}/OTPFieldView/OTPFieldView.framework

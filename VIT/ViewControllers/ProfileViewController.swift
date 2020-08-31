@@ -43,7 +43,9 @@ class ProfileViewController: UITableViewController {
                 }
                 
             case .failure(let error):
-                SPAlert.present(message: error.localizedDescription, haptic: .error)
+                DispatchQueue.main.async {
+                    SPAlert.present(message: error.localizedDescription, haptic: .error)
+                }
             }
         }
     }
@@ -74,5 +76,46 @@ class ProfileViewController: UITableViewController {
         courseLabel.text = profile.description
         mailLabel.text = profile.email
         phoneLabel.text = profile.mobileNo
+    }
+    
+    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let identifier = NSString(string: "\(indexPath.row)")
+        let config = UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { (actions) -> UIMenu? in
+            if indexPath.section == 0 && indexPath.row == 1 {
+                let action = UIAction(title: "Copy Registration Number",image: UIImage(systemName: "person.crop.square.fill"), discoverabilityTitle: self.profile.regNo) { (action) in
+                    UIPasteboard.general.string = self.profile.regNo
+                }
+                let menu = UIMenu(title: self.profile.studentName!.capitalized, children: [action])
+                return menu
+            }
+            
+            if indexPath.section == 2 && indexPath.row == 0 {
+                let action = UIAction(title: "Copy Email", image: UIImage(systemName: "envelope.fill"), discoverabilityTitle: self.profile.email) { (action) in
+                    UIPasteboard.general.string = self.profile.email
+                }
+                let menu = UIMenu(title: self.profile.studentName!.capitalized, children: [action])
+                return menu
+            }
+            
+            if indexPath.section == 2 && indexPath.row == 1 {
+                let action = UIAction(title: "Copy Phone Number", image: UIImage(systemName: "phone.fill"), discoverabilityTitle: self.profile.mobileNo) { (action) in
+                    UIPasteboard.general.string = self.profile.mobileNo
+                }
+                let menu = UIMenu(title: self.profile.studentName!.capitalized, children: [action])
+                return menu
+            }
+            
+            return nil
+        }
+        return config
+    }
+    
+    override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        let index = Int(configuration.identifier as! String) ?? -1
+        let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0))
+        let params = UIPreviewParameters()
+        params.visiblePath = UIBezierPath(roundedRect: cell?.bounds ?? CGRect(), cornerRadius: 12)
+        params.backgroundColor = .clear
+        return UITargetedPreview(view: cell ?? DATableViewCell(), parameters: params)
     }
 }

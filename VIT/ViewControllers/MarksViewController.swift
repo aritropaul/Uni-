@@ -7,6 +7,7 @@
 
 import UIKit
 import SPAlert
+import ALRT
 
 class MarksViewController: UITableViewController {
 
@@ -21,7 +22,8 @@ class MarksViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getMarks()
+        getMarks(cached: true)
+        getMarks(cached: false)
         self.refreshControl?.addTarget(self, action: #selector(getMarks), for: .valueChanged)
         semesterButton.title = Semesters.FallSemester202021.rawValue
         semesterButton.primaryAction = nil
@@ -29,10 +31,10 @@ class MarksViewController: UITableViewController {
         
     }
     
-    @objc func getMarks() {
+    @objc func getMarks(cached: Bool = false) {
         isLoading = true
         self.tableView.setLoadingView(title: "Loading Marks")
-        VIT.shared.getMarks { (result) in
+        VIT.shared.getMarks(cache: cached) { (result) in
             switch result {
             case .success(let marks) :
                 self.marks = marks
@@ -55,7 +57,13 @@ class MarksViewController: UITableViewController {
                     self.tableView.reloadData()
                 }
             case .failure(let error) :
-                SPAlert.present(message: error.localizedDescription, haptic: .error)
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.tableView.restore()
+                    ALRT.create(.alert, title: "Error", message: error.localizedDescription).addAction("Retry", style: .default, preferred: true) { (action, textFields) in
+                        self.getMarks()
+                    }.addCancel().show()
+                }
             }
         }
     }
