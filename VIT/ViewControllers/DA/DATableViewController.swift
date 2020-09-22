@@ -12,7 +12,7 @@ import ALRT
 
 class DATableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
-    var assignments = [DA]()
+    var assignments = [Assignment]()
     var isLoading = false
     var dateSorted = true
     @IBOutlet weak var filterButton: UIBarButtonItem!
@@ -20,23 +20,25 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadDA(cached: true)
-         loadDA(cached: false)
+//        loadDA(cached: true)
+        loadDA(cached: false)
         self.refreshControl?.addTarget(self, action: #selector(loadDA), for: .valueChanged)
     }
     
     @IBAction func filter(_ sender: Any) {
         if dateSorted {
             assignments.sort { (da1, da2) -> Bool in
-                return (da1.course)! < (da2.course)!
+                return (da1.courseName) < (da2.courseName)
             }
+            showToast(with: "Sorted Course-Wise")
             filterButton.image = UIImage(systemName: "line.horizontal.3.decrease.circle.fill")
             dateSorted = false
         }
         else {
             assignments.sort { (da1, da2) -> Bool in
-                return (da1.dueDate?.toDate())! < (da2.dueDate?.toDate())!
+                return (da1.lastDate.toDate())! < (da2.lastDate.toDate())!
             }
+            showToast(with: "Sorted Datewise")
             filterButton.image = UIImage(systemName: "line.horizontal.3.decrease.circle")
             dateSorted = true
         }
@@ -51,8 +53,10 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
             switch result {
             case .success(let assignments) :
                 self.isLoading = false
-                self.parseDA(assignmentDetail: assignments)
-                print(self.assignments)
+                self.assignments = assignments
+                self.assignments.sort { (da1, da2) -> Bool in
+                    return (da1.lastDate.toDate())! < (da2.lastDate.toDate())!
+                }
                 DispatchQueue.main.async {
                     self.tableView.restore()
                     self.tableView.reloadData()
@@ -70,21 +74,6 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
                     }.addCancel().show()
                 }
             }
-        }
-    }
-    
-    
-    func parseDA(assignmentDetail: [AssignmentDetail]) {
-        assignments.removeAll()
-        for assignment in assignmentDetail {
-            for task in assignment.getDigitalAssignmentDetails ?? [GetDigitalAssignmentDetail]() {
-                let da = DA(assignmentTitle: task.optionTitle, dueDate: task.lastDate, course: assignment.courseName, facultyMail: assignment.email)
-                assignments.append(da)
-            }
-        }
-        
-        assignments.sort { (da1, da2) -> Bool in
-            return (da1.dueDate?.toDate())! < (da2.dueDate?.toDate())!
         }
     }
     
@@ -143,11 +132,9 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DACell", for: indexPath) as! DATableViewCell
-        if indexPath != nil {
-            cell.assignmentTitle.text = assignments[indexPath.row].assignmentTitle
-            cell.courseName.text = assignments[indexPath.row].course
-            cell.dateLabel.text = assignments[indexPath.row].dueDate?.date()
-        }
+        cell.assignmentTitle.text = assignments[indexPath.row].title
+        cell.courseName.text = assignments[indexPath.row].courseName
+        cell.dateLabel.text = assignments[indexPath.row].lastDate.date()
         return cell
     }
     
@@ -156,23 +143,23 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
     }
     
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let course = self.assignments[indexPath.row].course?.components(separatedBy: " - ")[1]
-        let task = self.assignments[indexPath.row].assignmentTitle
+        let course = self.assignments[indexPath.row].courseName.components(separatedBy: " - ")[1]
+        let task = self.assignments[indexPath.row].title
         let identifier = NSString(string: "\(indexPath.row)")
         let configuration = UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { (action) -> UIMenu? in
             let alarmAction = UIAction(title: "Set a reminder", image: UIImage(systemName: "alarm"), discoverabilityTitle: self.getDaysLeft(indexPath: indexPath)) { (action) in
-                let time = self.assignments[indexPath.row].dueDate?.toDate()
-                scheduleDANotification(assignment: task!, course: course!, time: time!)
+                let time = self.assignments[indexPath.row].lastDate.toDate()
+                scheduleDANotification(assignment: task, course: course, time: time!)
                 self.generator.impactOccurred()
-                self.showToast(with: "Reminder Set for \(course?.abbr() ?? "")")
+                self.showToast(with: "Reminder Set for \(course.abbr())")
             }
             
-            let attendanceAction = UIAction(title: "Contact Faculty", image: UIImage(systemName: "envelope.fill"), discoverabilityTitle: self.assignments[indexPath.row].facultyMail) { (action) in
-                self.sendEmail(self.assignments[indexPath.row].facultyMail ?? "", assignment: self.assignments[indexPath.row].assignmentTitle ?? "")
+            let attendanceAction = UIAction(title: "Contact Faculty", image: UIImage(systemName: "envelope.fill"), discoverabilityTitle: self.assignments[indexPath.row].faculty.email) { (action) in
+                self.sendEmail(self.assignments[indexPath.row].faculty.email , assignment: self.assignments[indexPath.row].title )
                 self.generator.impactOccurred()
             }
             
-            let menu = UIMenu(title: task!, children: [alarmAction, attendanceAction])
+            let menu = UIMenu(title: task, children: [alarmAction, attendanceAction])
             return menu
         }
         
@@ -184,7 +171,7 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
         dateComponentsFormatter.allowedUnits = [.day, .hour]
         dateComponentsFormatter.maximumUnitCount = 1
         dateComponentsFormatter.unitsStyle = .full
-        var daysLeft =  dateComponentsFormatter.string(from: (self.assignments[indexPath.row].dueDate?.toDate()?.removing(days: -1))!, to: Date())
+        var daysLeft =  dateComponentsFormatter.string(from: (self.assignments[indexPath.row].lastDate.toDate()?.removing(days: -1))!, to: Date())
         if daysLeft!.contains("-") || daysLeft!.contains("hour") {
             daysLeft = "Due in " + daysLeft!.replacingOccurrences(of: "-", with: "")
         }

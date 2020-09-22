@@ -43,7 +43,7 @@ func scheduleDANotification(assignment: String, course: String, time: Date) {
     print(dateComponents)
     var trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
     
-    var request = UNNotificationRequest(identifier: course, content: content, trigger: trigger)
+    var request = UNNotificationRequest(identifier: course+"1", content: content, trigger: trigger)
     center.add(request)
     
     content.body = "Your \(course) \(assignment) is due today"
@@ -51,7 +51,7 @@ func scheduleDANotification(assignment: String, course: String, time: Date) {
     print(dateComponents) 
     trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
     
-    request = UNNotificationRequest(identifier: course, content: content, trigger: trigger)
+    request = UNNotificationRequest(identifier: course+"2", content: content, trigger: trigger)
     center.add(request)
 }
 

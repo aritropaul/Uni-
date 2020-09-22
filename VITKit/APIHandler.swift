@@ -131,26 +131,26 @@ class VIT {
         task.resume()
     }
     
-    func getDAs(cache: Bool = true, completion: @escaping(Result<[AssignmentDetail], APIError>)->Void) {
+    func getDAs(cache: Bool = true, completion: @escaping(Result<[Assignment], APIError>)->Void) {
         print("⤵️ Getting DAs")
         guard let url = DAURL else { return }
         let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: .greatestFiniteMagnitude)
         let session = URLSession.shared
         if let cachedData = dataCache.cachedResponse(for: request) {
             if cache == true {
-                let assignment = try! JSONDecoder().decode(Assignment.self, from: cachedData.data)
+                let assignment = try! JSONDecoder().decode(DA.self, from: cachedData.data)
                 print("✅ DA Success")
-                completion(.success(assignment.assignmentDetail))
+                completion(.success(assignment.assignments))
             }
         }
         let task = session.dataTask(with: url) { (data, response, error) in
             if let response = response as? HTTPURLResponse, let data = data {
                 if response.statusCode == 200 {
-                    let assignment = try! JSONDecoder().decode(Assignment.self, from: data)
+                    let assignment = try! JSONDecoder().decode(DA.self, from: data)
                     let cachedData = CachedURLResponse(response: response, data: data)
                     dataCache.storeCachedResponse(cachedData, for: request)
                     print("✅ DA Success")
-                    completion(.success(assignment.assignmentDetail))
+                    completion(.success(assignment.assignments))
                 }
                 else if response.statusCode == 429 {
                     print("❌ DA Failure")

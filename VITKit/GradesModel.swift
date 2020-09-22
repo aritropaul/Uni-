@@ -7,27 +7,27 @@
 
 import Foundation
 
-struct Grades : Codable {
-    let gradeView: [String: GradeView]?
+// MARK: - Grades
+struct Grades: Codable {
+    let grades: [Semester]
 }
 
-struct GradeView : Codable {
-    let markView: [GradeMarkView]?
+// MARK: - GradesGrade
+struct Semester: Codable {
+    let grades: [Grade]
+    let name: String
 }
 
-struct GradeMarkView : Codable {
-    let courseCode: String?
-    let courseTitle: String?
-    let studentMarkListByClassNbr: [String : [GradeStudentMarkList]]?
-    let c: Int?
-    let grade: String?
-    let grandTotal : Int?
-}
-
-struct GradeStudentMarkList : Codable {
-    let markTitle: String?
-    let maxMark : String?
-    let marksGiven: Double?
+// MARK: - GradeGradeClass
+struct Grade: Codable {
+    let type: String
+    let code, title, slot: String
+    let marks: [Mark]?
+    let grade: String
+    let credits: Int
+    let range: [String: Double]?
+    let gradingType: String
+    let grandTotal: Int
 }
 
 let gradeMap = ["S" : 10,

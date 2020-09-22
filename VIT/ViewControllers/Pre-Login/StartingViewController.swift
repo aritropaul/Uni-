@@ -42,7 +42,6 @@ class StartingViewController: UIViewController {
     @IBAction func loginTapped(_ sender: Any) {
         if registrationField.text != "" {
             regNum = registrationField.text!
-            generateURLs()
             sendOTP()
         }
         else {
@@ -89,7 +88,6 @@ extension StartingViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if registrationField.text != "" {
             regNum = registrationField.text!
-            generateURLs()
             sendOTP()
             return true
         }

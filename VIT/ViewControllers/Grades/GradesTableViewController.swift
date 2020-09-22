@@ -12,10 +12,11 @@ import ALRT
 class GradesTableViewController: UITableViewController {
 
     var grades: Grades?
-    var selectedSemester = SemesterMap.WinterSemester201920.rawValue
+    var selectedSemester: Semester?
+    var selectedSemesterString = SemesterMap.WinterSemester201920.rawValue
     var isLoading = false
     let generator = UIImpactFeedbackGenerator(style: .medium)
-    var selectedSubject : GradeMarkView!
+    var selectedSubject : Grade!
     var cgpa = 0.0
     var totalCredits = 0
     var gpa = 0.0
@@ -30,22 +31,24 @@ class GradesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getGrades(cached: true)
+        self.refreshControl?.addTarget(self, action: #selector(getGrades(cached:)), for: .valueChanged)
         semesterButton.menu = menuBuilder()
         semesterButton.primaryAction = nil
-        semesterButton.title = Semesters.WinterSemester201920.rawValue
+        selectSem(sem: .WinterSemester201920)
         CGPALabel.text = ""
         semGPALabel.text = ""
-        
         let interaction = UIContextMenuInteraction(delegate: self)
         GPAView.addInteraction(interaction)
     }
     
     func calculateCGPA() {
-        for (_, value) in self.grades?.gradeView ?? [String : GradeView]() {
-            for subject in value.markView ?? [GradeMarkView]() {
+        cgpa = 0.0
+        totalCredits = 0
+        for semester in self.grades?.grades ?? [Semester]() {
+            for subject in semester.grades {
                 if subject.grade != "P" {
-                    cgpa += Double((subject.c ?? 0) * (gradeMap[subject.grade!] ?? 0))
-                    totalCredits += subject.c ?? 1
+                    cgpa += Double((subject.credits) * (gradeMap[subject.grade] ?? 0))
+                    totalCredits += subject.credits
                 }
             }
         }
@@ -56,11 +59,11 @@ class GradesTableViewController: UITableViewController {
     func calculateGPA(sem: String) {
         gpa = 0.0
         semCredits = 0
-        let subject = self.grades?.gradeView?[sem]
-        for item in subject?.markView ?? [GradeMarkView]() {
+        let sem = selectedSemester
+        for item in sem?.grades ?? [Grade]() {
             if item.grade != "P" {
-                gpa += Double((item.c ?? 0) * (gradeMap[item.grade!] ?? 0))
-                semCredits += item.c ?? 1
+                gpa += Double((item.credits ) * (gradeMap[item.grade] ?? 0))
+                semCredits += item.credits
             }
         }
         
@@ -68,7 +71,7 @@ class GradesTableViewController: UITableViewController {
         semGPALabel.text = String(format: "%.2f", gpa)
     }
     
-    func getGrades(cached: Bool = false) {
+    @objc func getGrades(cached: Bool = false) {
         isLoading = true
         self.tableView.setLoadingView(title: "Loading Grades")
         VIT.shared.getGrades(cache: cached) { (result) in
@@ -78,7 +81,10 @@ class GradesTableViewController: UITableViewController {
                 self.grades = grades
                 DispatchQueue.main.async {
                     self.calculateCGPA()
-                    self.calculateGPA(sem: self.selectedSemester)
+                    if self.refreshControl!.isRefreshing {
+                        self.refreshControl?.endRefreshing()
+                    }
+                    self.calculateGPA(sem: self.selectedSemesterString)
                     self.tableView.restore()
                     self.tableView.reloadData()
                 }
@@ -111,22 +117,25 @@ class GradesTableViewController: UITableViewController {
     func selectSem(sem: Semesters) {
         switch sem {
         case .FallSemester201718:
-            selectedSemester = SemesterMap.FallSemester201718.rawValue
+            selectedSemesterString = SemesterMap.FallSemester201718.rawValue
         case .WinterSemester201718:
-            selectedSemester = SemesterMap.WinterSemester201718.rawValue
+            selectedSemesterString = SemesterMap.WinterSemester201718.rawValue
         case .FallSemester201819:
-            selectedSemester = SemesterMap.FallSemester201819.rawValue
+            selectedSemesterString = SemesterMap.FallSemester201819.rawValue
         case .WinterSemester201819:
-            selectedSemester = SemesterMap.WinterSemester201819.rawValue
+            selectedSemesterString = SemesterMap.WinterSemester201819.rawValue
         case .FallSemester201920:
-            selectedSemester = SemesterMap.FallSemester201920.rawValue
+            selectedSemesterString = SemesterMap.FallSemester201920.rawValue
         case .WinterSemester201920:
-            selectedSemester = SemesterMap.WinterSemester201920.rawValue
+            selectedSemesterString = SemesterMap.WinterSemester201920.rawValue
         case .FallSemester202021:
-            selectedSemester = SemesterMap.FallSemester202021.rawValue
+            selectedSemesterString = SemesterMap.FallSemester202021.rawValue
         }
+        selectedSemester = grades?.grades.first(where: { (sem) -> Bool in
+            return sem.name == selectedSemesterString
+        })
         semesterButton.title = sem.rawValue
-        self.calculateGPA(sem: selectedSemester)
+        self.calculateGPA(sem: selectedSemesterString)
         generator.impactOccurred()
         self.tableView.reloadData()
     }
@@ -139,21 +148,21 @@ class GradesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if !isLoading {
-            if grades?.gradeView?[selectedSemester]?.markView?.count ?? 0 == 0 {
+            if selectedSemester?.grades.count ?? 0 == 0 {
                 self.tableView.setEmptyView(title: "No Grades Here", message: "No Grades found for this sem")
             }
             else {
                 self.tableView.restore()
             }
         }
-        return grades?.gradeView?[selectedSemester]?.markView?.count ?? 0
+        return selectedSemester?.grades.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "gradeCell", for: indexPath) as! GradeTableViewCell
-        let subject = grades?.gradeView?[selectedSemester]?.markView?[indexPath.row]
-        cell.courseCode.text = subject?.courseCode
-        cell.courseName.text = subject?.courseTitle
+        let subject = selectedSemester?.grades[indexPath.row]
+        cell.courseCode.text = subject?.code
+        cell.courseName.text = subject?.title
         cell.gradeLabel.text = subject?.grade
         return cell
     }
@@ -163,16 +172,16 @@ class GradesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let subject = grades?.gradeView?[selectedSemester]?.markView?[indexPath.row]
+        let subject = selectedSemester?.grades[indexPath.row]
         let identifier = NSString(string: "\(indexPath.row)")
         let configuration = UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { (action) -> UIMenu? in
             let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { (action) in
-                let items = ["I got a \(subject?.grade ?? "") in \(subject?.courseTitle ?? "")! What did you get?"]
+                let items = ["I got a \(subject?.grade ?? "") in \(subject?.title ?? "")! What did you get?"]
                 let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
                 self.present(ac, animated: true)
             }
             
-            let menu = UIMenu(title: "\(subject?.grade ?? "") in \(subject?.courseTitle ?? "")", children: [shareAction])
+            let menu = UIMenu(title: "\(subject?.grade ?? "") in \(subject?.title ?? "")", children: [shareAction])
             return menu
         }
         return configuration
@@ -189,7 +198,7 @@ class GradesTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedSubject = grades?.gradeView?[selectedSemester]?.markView?[indexPath.row]
+        selectedSubject = selectedSemester?.grades[indexPath.row]
         self.performSegue(withIdentifier: "gradeDetail", sender: Any?.self)
     }
     

@@ -27,8 +27,6 @@ class ProfileViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        settingsButton.primaryAction = nil
-        settingsButton.menu = makeMenu()
         isLoading = true
         getProfile()
     }

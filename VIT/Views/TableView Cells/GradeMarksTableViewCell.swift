@@ -17,9 +17,9 @@ class GradeMarksTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    func setMarks(for part: String, marksGiven: Double, maxMarks: String) {
+    func setMarks(for part: String, marksGiven: Double, maxMarks: Int) {
         titleLabel.text = part
-        marksLabel.text = "\(marksGiven ) / \(maxMarks)"
+        marksLabel.text = "\(marksGiven) / \(maxMarks)"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

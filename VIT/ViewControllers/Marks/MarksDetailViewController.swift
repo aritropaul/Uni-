@@ -20,19 +20,19 @@ class MarksDetailViewController: UIViewController {
     @IBOutlet weak var teacherName: UILabel!
     @IBOutlet weak var courseType: UILabel!
     
-    var subject = MarksList()
+    var subject: Subject!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        courseName.text = subject.courseTitle
-        courseType.text = courseMap[subject.courseType ?? ""]
+        courseName.text = subject.title
+        courseType.text = courseMap[subject.type ]
         teacherName.text = subject.faculty
-        courseCode.text = subject.courseCode
+        courseCode.text = subject.code
         mainView.layer.cornerRadius = 12
         barView.layer.cornerRadius = 12
         marksTable.delegate = self
         marksTable.dataSource = self
-        self.navigationItem.title = subject.courseTitle
+        self.navigationItem.title = subject.title
     }
     
     
@@ -43,13 +43,13 @@ class MarksDetailViewController: UIViewController {
     func generateBar() {
         var total = 0.0
         var index = 0
-        for mark in subject.studentMarkList ?? [StudentMarkList]() {
+        for mark in subject.marks {
             let view = UIView(frame: barView.bounds)
             view.frame.size.width = 0
             UIView.animate(withDuration: 0.2) {
-                view.frame.size.width = CGFloat(total) + (CGFloat((mark.weightageMarkView ?? 0.0)) * self.barView.frame.width / 100)
+                view.frame.size.width = CGFloat(total) + (CGFloat((mark.weightedMarks )) * self.barView.frame.width / 100)
             }
-            total = total + ((mark.weightageMarkView ?? 0.0) * Double(barView.frame.width) / 100)
+            total = total + ((mark.weightedMarks) * Double(barView.frame.width) / 100)
             view.backgroundColor = UIColor(hex: colorArray.reversed()[index])
             if index != colorArray.count - 1 {
                 index = index + 1
@@ -69,13 +69,13 @@ class MarksDetailViewController: UIViewController {
 
 extension MarksDetailViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subject.studentMarkList?.count ?? 0
+        return subject.marks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "markCell")!
-        cell.textLabel?.text = subject.studentMarkList?[indexPath.row].markTitle
-        cell.detailTextLabel?.text = "\(subject.studentMarkList?[indexPath.row].marksGiven ?? 0.0) / \(subject.studentMarkList?[indexPath.row].maxMark ?? "0")"
+        cell.textLabel?.text = subject.marks[indexPath.row].title
+        cell.detailTextLabel?.text = "\(subject.marks[indexPath.row].actualMarks) / \(subject.marks[indexPath.row].maxMarks)"
         return cell
     }
     

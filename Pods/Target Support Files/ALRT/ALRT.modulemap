@@ -1,0 +1,6 @@
+framework module ALRT {
+  umbrella header "ALRT-umbrella.h"
+
+  export *
+  module * { export * }
+}

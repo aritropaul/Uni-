@@ -24,6 +24,7 @@ class AttendanceTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = subject.course?.abbr()
+        attendanceDetails = attendanceDetails.reversed()
     }
     
 
