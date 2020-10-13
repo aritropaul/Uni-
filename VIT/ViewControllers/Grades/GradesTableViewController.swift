@@ -85,6 +85,7 @@ class GradesTableViewController: UITableViewController {
                         self.refreshControl?.endRefreshing()
                     }
                     self.calculateGPA(sem: self.selectedSemesterString)
+                    self.selectSem(sem: .WinterSemester201920)
                     self.tableView.restore()
                     self.tableView.reloadData()
                 }

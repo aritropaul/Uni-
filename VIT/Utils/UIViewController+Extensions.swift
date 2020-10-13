@@ -84,21 +84,6 @@ extension UIColor {
 }
 
 
-extension String {
-    func abbr() -> String {
-        let components = self.components(separatedBy: " ")
-        var abbr = ""
-        let notWords = ["and", "of", "for", "(", "to"]
-        for word in components {
-            if !notWords.contains(word)  {
-                abbr += String(word.first!)
-            }
-        }
-        return abbr
-    }
-}
-
-
 extension UINib {
     func instantiate() -> Any? {
         return self.instantiate(withOwner: nil, options: nil).first

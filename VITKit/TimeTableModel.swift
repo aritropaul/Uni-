@@ -84,3 +84,10 @@ enum AttendanceStatus: String, Codable {
 
 
 var cachedTimetable = Timetable()
+
+
+struct UpcomingClass : Codable {
+    var attendance: String
+    var title: String
+    var start: String
+}

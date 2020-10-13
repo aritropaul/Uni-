@@ -54,14 +54,17 @@ class StartingViewController: UIViewController {
         VIT.shared.getMobileNumber { (result) in
             switch result {
             case .success(let number):
-                PhoneAuthProvider.provider().verifyPhoneNumber("+91"+number, uiDelegate: nil) { (id, error) in
+                DispatchQueue.main.async {
                     alert.dismiss(animated: true) {
-                        if error != nil {
-                            SPAlert.present(message: error!.localizedDescription, haptic: .error)
-                        }
-                        else {
-                            self.verificationID = id!
-                            self.performSegue(withIdentifier: "otp", sender: Any?.self)
+                        PhoneAuthProvider.provider().verifyPhoneNumber("+91"+number, uiDelegate: nil) { (id, error) in
+                            if error != nil {
+                                SPAlert.present(message: error!.localizedDescription, haptic: .error)
+                            }
+                            else {
+                                self.verificationID = id!
+                                self.performSegue(withIdentifier: "otp", sender: Any?.self)
+                            }
+                            
                         }
                     }
                 }

@@ -199,15 +199,51 @@ class VIT {
         task.resume()
     }
     
+    func getUpcomingClasses( completion: @escaping(Result<[UpcomingClass], APIError>) -> Void) {
+        print("⤵️ Getting Upcoming")
+        guard let url = upcomingURL else { return }
+        let session = URLSession.shared
+        let task = session.dataTask(with: url) { (data, response, error) in
+            if let response = response as? HTTPURLResponse, let data = data {
+                if response.statusCode == 200 {
+                    if let classes = try? JSONDecoder().decode([UpcomingClass].self, from: data) {
+                        print("✅ Upcoming Success")
+                        completion(.success(classes))
+                    }
+                    else {
+                        print("❌ Timetable Failure")
+                        completion(.failure(.decodingError(message: "Couldn't get upcoming")))
+                    }
+                }
+                else if response.statusCode == 429 {
+                    print("❌ Timetable Failure")
+                    completion(.failure(.tooManyRequests(message: "Try again later")))
+                }
+            }
+            else {
+                print("❌ Timetable Failure")
+                completion(.failure(.noResponse(message: "Did not get a response")))
+            }
+        }
+        task.resume()
+    }
+    
     
     func saveLoginState() {
-        UserDefaults.standard.set(VIT.loggedIn, forKey: "login")
-        UserDefaults.standard.set(regNum, forKey: "regno")
+        if let userDefaults = UserDefaults(suiteName: "group.uni") {
+            userDefaults.set(VIT.loggedIn, forKey: "login")
+            userDefaults.set(regNum, forKey: "regno")
+            userDefaults.synchronize()
+        }
     }
     
     func fetchLoginState() -> Bool{
-        VIT.loggedIn = UserDefaults.standard.bool(forKey: "login")
-        regNum = UserDefaults.standard.string(forKey: "regno") ?? ""
-        return VIT.loggedIn
+        if let userDefaults = UserDefaults(suiteName: "group.uni") {
+            VIT.loggedIn = userDefaults.bool(forKey: "login")
+            regNum = userDefaults.string(forKey: "regno") ?? ""
+            userDefaults.synchronize()
+            return VIT.loggedIn
+        }
+        return false
     }
 }

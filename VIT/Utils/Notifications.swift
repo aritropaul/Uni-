@@ -31,13 +31,13 @@ func scheduleDANotification(assignment: String, course: String, time: Date) {
 
     let content = UNMutableNotificationContent()
     content.title = "Work time!"
-    content.body = "Your \(course) \(assignment) is due tomorrow"
+    content.body = "Your \(course) \(assignment) is due today"
     content.categoryIdentifier = "reminder"
     content.sound = UNNotificationSound.default
 
     
     let calendar = Calendar.current
-    var dateComponents = calendar.dateComponents([.day], from: time.removing(days: 1)!)
+    var dateComponents = calendar.dateComponents([.day], from: time)
     dateComponents.hour = 0
     dateComponents.minute = 0
     print(dateComponents)
@@ -46,8 +46,7 @@ func scheduleDANotification(assignment: String, course: String, time: Date) {
     var request = UNNotificationRequest(identifier: course+"1", content: content, trigger: trigger)
     center.add(request)
     
-    content.body = "Your \(course) \(assignment) is due today"
-    dateComponents = calendar.dateComponents([.day, .hour, .minute], from: time.removing(hours: 6)!)
+    dateComponents = calendar.dateComponents([.day, .hour, .minute], from: time.removing(hours: -6)!)
     print(dateComponents) 
     trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
     
@@ -79,9 +78,35 @@ extension Date {
         return str
     }
     
+    func timeToString(withFormat format: String = "hh:mm a") -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        let str = dateFormatter.string(from: self)
+        return str
+    }
+    
 }
 
 extension String {
+    func abbr() -> String {
+        let components = self.components(separatedBy: " ")
+        var abbr = ""
+        let notWords = ["and", "of", "for", "(", "to"]
+        for word in components {
+            if !notWords.contains(word)  {
+                abbr += String(word.first!)
+            }
+        }
+        return abbr
+    }
+    
+    func timeToDate(withFormat format: String = "hh:mm a")-> Date?{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        let date = dateFormatter.date(from: self)
+        return date
+    }
+    
     func toDate(withFormat format: String = "dd-MMM-yyyy")-> Date?{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format

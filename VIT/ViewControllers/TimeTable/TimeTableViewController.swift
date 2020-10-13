@@ -32,6 +32,8 @@ class TimeTableViewController: UITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(getTimeTable), for: .valueChanged)
         dayBarButton.title = ""
         didGetTimetable = true
+        
+        getUpcoming()
         menu = PinterestSegment(frame: CGRect(x: 0, y: 8, width: self.view.frame.width, height: 40), titles: days)
         menu.valueChange = { index in
             self.MenuSelector(day: index)
@@ -42,6 +44,17 @@ class TimeTableViewController: UITableViewController {
             _ = self.TTforDay(day: currentDay)
             menu.setSelectIndex(index: selectedDay, animated: true)
             self.tableView.reloadData()
+        }
+    }
+    
+    func getUpcoming() {
+        VIT.shared.getUpcomingClasses { (result) in
+            switch result {
+            case .success(let classes) :
+                print(classes)
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 

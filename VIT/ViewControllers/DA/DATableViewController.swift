@@ -13,6 +13,7 @@ import ALRT
 class DATableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
     var assignments = [Assignment]()
+    var allAssignments = [Assignment]()
     var isLoading = false
     var dateSorted = true
     @IBOutlet weak var filterButton: UIBarButtonItem!
@@ -27,19 +28,20 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
     
     @IBAction func filter(_ sender: Any) {
         if dateSorted {
-            assignments.sort { (da1, da2) -> Bool in
-                return (da1.courseName) < (da2.courseName)
+            assignments = assignments.filter { (da) -> Bool in
+                return (da.lastDate.toDate())! > Date()
             }
-            showToast(with: "Sorted Course-Wise")
-            filterButton.image = UIImage(systemName: "line.horizontal.3.decrease.circle.fill")
+            showToast(with: "Only Remaining DAs")
+            filterButton.image = UIImage(systemName: "calendar.circle.fill")
             dateSorted = false
         }
         else {
+            assignments = allAssignments
             assignments.sort { (da1, da2) -> Bool in
                 return (da1.lastDate.toDate())! < (da2.lastDate.toDate())!
             }
-            showToast(with: "Sorted Datewise")
-            filterButton.image = UIImage(systemName: "line.horizontal.3.decrease.circle")
+            showToast(with: "All Assignments")
+            filterButton.image = UIImage(systemName: "calendar.circle")
             dateSorted = true
         }
         tableView.reloadData()
@@ -54,6 +56,7 @@ class DATableViewController: UITableViewController, MFMailComposeViewControllerD
             case .success(let assignments) :
                 self.isLoading = false
                 self.assignments = assignments
+                self.allAssignments = assignments
                 self.assignments.sort { (da1, da2) -> Bool in
                     return (da1.lastDate.toDate())! < (da2.lastDate.toDate())!
                 }

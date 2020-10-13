@@ -62,6 +62,7 @@ extension OTPViewController : OTPFieldViewDelegate {
                     else {
                         VIT.loggedIn = true
                         VIT.shared.saveLoginState()
+                        generateURL()
                         self.performSegue(withIdentifier: "main", sender: Any?.self)
                     }
                 }
