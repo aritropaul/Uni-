@@ -7,7 +7,7 @@
 
 import Foundation
 
-var regNum = ""
+var regNum = "17BCI0156"
 
 #if DEBUG
 var profileURL = URL(string: "https://vitian-v2.herokuapp.com/profile/\(regNum)")

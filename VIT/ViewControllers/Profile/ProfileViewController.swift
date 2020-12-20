@@ -77,7 +77,7 @@ class ProfileViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let identifier = NSString(string: "\(indexPath.row)")
+        let identifier = NSString(string: "\(indexPath.row),\(indexPath.section)")
         let config = UIContextMenuConfiguration(identifier: identifier, previewProvider: nil) { (actions) -> UIMenu? in
             if indexPath.section == 0 && indexPath.row == 1 {
                 let action = UIAction(title: "Copy Registration Number",image: UIImage(systemName: "person.crop.square.fill"), discoverabilityTitle: self.profile.regNo) { (action) in
@@ -109,8 +109,10 @@ class ProfileViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
-        let index = Int(configuration.identifier as! String) ?? -1
-        let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0))
+        let id = String(configuration.identifier as! Substring)
+        let row = Int(id.components(separatedBy: ",")[0]) ?? -1
+        let section = Int(id.components(separatedBy: ",")[1]) ?? -1
+        let cell = tableView.cellForRow(at: IndexPath(row: row, section: section))
         let params = UIPreviewParameters()
         params.visiblePath = UIBezierPath(roundedRect: cell?.bounds ?? CGRect(), cornerRadius: 12)
         params.backgroundColor = .clear

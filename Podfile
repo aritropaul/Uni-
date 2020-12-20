@@ -12,5 +12,6 @@ target 'VIT' do
   pod 'OTPFieldView' 
   pod 'PinterestSegment'
   pod 'ALRT', '~> 1.3.7'
+  pod 'Charts'
 
 end

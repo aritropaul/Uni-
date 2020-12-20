@@ -33,3 +33,8 @@ extension UIViewController {
         return viewController
     }
 }
+
+extension UIColor {
+    static let proBlue = UIColor(red: 10/255, green: 102/255, blue: 255/255, alpha: 1)
+    static let proBlueHalf = UIColor(red: 10/255, green: 102/255, blue: 255/255, alpha: 0.5)
+}

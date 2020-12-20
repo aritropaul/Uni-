@@ -1,5 +1,8 @@
 PODS:
   - ALRT (1.3.7)
+  - Charts (3.6.0):
+    - Charts/Core (= 3.6.0)
+  - Charts/Core (3.6.0)
   - Firebase/Auth (6.28.1):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.7.0)
@@ -64,6 +67,7 @@ PODS:
 
 DEPENDENCIES:
   - ALRT (~> 1.3.7)
+  - Charts
   - Firebase/Auth
   - Firebase/Crashlytics
   - OTPFieldView
@@ -72,6 +76,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - ALRT
+    - Charts
     - Firebase
     - FirebaseAuth
     - FirebaseCore
@@ -88,6 +93,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   ALRT: 7a83272617455872531b2982a0c8a1a4d9a24112
+  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   Firebase: ed042590caa0029392257529a8003c25ee82bc18
   FirebaseAuth: 06feef26ff3a98323677c76c4102146b872cd6b7
   FirebaseCore: 687b8e6a0a4337b898a6326d68254c2f80c143af
@@ -102,6 +108,6 @@ SPEC CHECKSUMS:
   PinterestSegment: 3dd673ffd9feb00dc7816bb1e503d70459e8eaa8
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
 
-PODFILE CHECKSUM: 33ba541c5b4bc582521030da0ca4ecf1559ca05e
+PODFILE CHECKSUM: cfd8a3b3c3684ef158c7940151bc77cd94446938
 
 COCOAPODS: 1.10.0.beta.1
